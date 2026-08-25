@@ -1,0 +1,46 @@
+{
+  "condition": "cross_domain",
+  "accuracy": 0.6546666666666666,
+  "macro_f1": 0.6339742894133108,
+  "per_class": {
+    "macro": {
+      "precision": 0.7410714285714286,
+      "recall": 0.332,
+      "f1": 0.4585635359116022,
+      "support": 250
+    },
+    "meso": {
+      "precision": 0.7509578544061303,
+      "recall": 0.784,
+      "f1": 0.7671232876712328,
+      "support": 250
+    },
+    "micro": {
+      "precision": 0.5623342175066313,
+      "recall": 0.848,
+      "f1": 0.6762360446570973,
+      "support": 250
+    }
+  },
+  "confusion_matrix": [
+    [
+      83,
+      44,
+      123
+    ],
+    [
+      12,
+      196,
+      42
+    ],
+    [
+      17,
+      21,
+      212
+    ]
+  ],
+  "majority_macro_f1": 0.16666666666666666,
+  "train_spans": 750,
+  "test_spans": 750,
+  "paper_overlap": 0
+}

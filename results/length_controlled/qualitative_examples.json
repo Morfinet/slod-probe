@@ -1,0 +1,200 @@
+{
+  "macro": {
+    "correct": [
+      {
+        "span_id": "c0acc340c0741c6a",
+        "paper_id": "254854411",
+        "section_name": "Abstract",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.999999916718431,
+        "correct": true,
+        "text": "many dialogue systems ( dss ) lack characteristics humans have, such as emotion perception, factuality, and informativeness"
+      },
+      {
+        "span_id": "3ff106b74d5958f1",
+        "paper_id": "254221047",
+        "section_name": "INTRODUCTION",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999967542094604,
+        "correct": true,
+        "text": "video sharing and streaming services have taken over the traditional media medium, as they provide vast, personalized, and on -"
+      },
+      {
+        "span_id": "e3543bf287131b5d",
+        "paper_id": "254854101",
+        "section_name": "INTRODUCTION",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999960836572711,
+        "correct": true,
+        "text": "in the era of rapidly evolving services, customer services are the next important technological advancement [ 1 ]. customer services are the"
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "be8962bd17e48743",
+        "paper_id": "254587743",
+        "section_name": "Introduction",
+        "true_label": "macro",
+        "predicted_label": "meso",
+        "confidence": 0.9999624485999915,
+        "correct": false,
+        "text": "bridge management is essential to ensure bridges are always in safe condition [ 5 ]. in addition to direct measures, such as"
+      },
+      {
+        "span_id": "eab1caf610bbc739",
+        "paper_id": "254125095",
+        "section_name": "Introduction",
+        "true_label": "macro",
+        "predicted_label": "micro",
+        "confidence": 0.9999272969475835,
+        "correct": false,
+        "text": "for each training instance, mlm only calculates labelwise matching between the prediction and the gold tokens in the training"
+      },
+      {
+        "span_id": "ed637c62da370b8b",
+        "paper_id": "254275435",
+        "section_name": "Abstract",
+        "true_label": "macro",
+        "predicted_label": "meso",
+        "confidence": 0.9979007043064477,
+        "correct": false,
+        "text": "advancement in large pretrained language models has significantly improved their performance for conditional language generation tasks including summarization albeit with"
+      }
+    ]
+  },
+  "meso": {
+    "correct": [
+      {
+        "span_id": "d978caf243bac55a",
+        "paper_id": "254587743",
+        "section_name": "Encoder",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9994760310457346,
+        "correct": true,
+        "text": "the model classifies the complex questions of bridge management as input, and obtains bert embeddings, pos"
+      },
+      {
+        "span_id": "65c5b76980405e84",
+        "paper_id": "254275267",
+        "section_name": "RETRO-fitting a baseline model",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9976373624244941,
+        "correct": true,
+        "text": "although a retro - based model could be trained from scratch for abstractive summarization, extending baseline models into retro models"
+      },
+      {
+        "span_id": "c554387c7b23a3b5",
+        "paper_id": "254125095",
+        "section_name": "Main Results",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.992539312876934,
+        "correct": true,
+        "text": "we evaluate the performance of our pre - training enhancement compared with the baselines in small and base sizes on glue and squad"
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "4604d48f6fcadca3",
+        "paper_id": "254366505",
+        "section_name": "Effect of Pretraining Behavior Corpora for Transfer Learning",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9996765481130288,
+        "correct": false,
+        "text": "we perform ablation studies on the relations between pretraining corpora and using task - agnostic data as user features"
+      },
+      {
+        "span_id": "313671e62d59946d",
+        "paper_id": "233215595",
+        "section_name": "Results",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9994725147197744,
+        "correct": false,
+        "text": "the single - task ( stl ) results and the multi - task ( mtl ) setup results are reported in table"
+      },
+      {
+        "span_id": "d9c7e4bfc9118f73",
+        "paper_id": "254685691",
+        "section_name": "Summary-Oriented Vision Modeling",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9991428666413189,
+        "correct": false,
+        "text": "we elaborately design two summary - oriented vision modeling tasks, namely vision to summary task and masked image modeling task, to"
+      }
+    ]
+  },
+  "micro": {
+    "correct": [
+      {
+        "span_id": "03436044f21f0066",
+        "paper_id": "255292678",
+        "section_name": "Method",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 0.9985635769178672,
+        "correct": true,
+        "text": "( source : processed data ) figure 3 depicts the stages of this study. data collection is a technique to gain data from"
+      },
+      {
+        "span_id": "c7e4f502e5ed2569",
+        "paper_id": "255096269",
+        "section_name": "Experimental Setup",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 0.9971573232032517,
+        "correct": true,
+        "text": "decoding. our evaluation data comprises tasks with answer candidates ( of which one is correct ), as well as tasks with"
+      },
+      {
+        "span_id": "aaf0cb547c04fcfa",
+        "paper_id": "254125095",
+        "section_name": "Analysis",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 0.993218934903364,
+        "correct": true,
+        "text": "lookup table from wordnet vs. word2vec for the hard correction approach, the candidate synonyms for detecting"
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "bc98668803890e2f",
+        "paper_id": "255026270",
+        "section_name": "Accuracy evaluation matrices",
+        "true_label": "micro",
+        "predicted_label": "meso",
+        "confidence": 0.999980862033909,
+        "correct": false,
+        "text": "after calculation precision and recall, f - measure is also calculated. f - score is the widely accepted measure to verify the"
+      },
+      {
+        "span_id": "6ad747a2c63941a6",
+        "paper_id": "254125395",
+        "section_name": "Implementation Details",
+        "true_label": "micro",
+        "predicted_label": "meso",
+        "confidence": 0.999903957974357,
+        "correct": false,
+        "text": "all models were trained using the huggingface library ( wolf et al., 2020 ) on an nvidia tesla a1"
+      },
+      {
+        "span_id": "1de56cfb210763da",
+        "paper_id": "254853778",
+        "section_name": "Individuation and Model Evaluation",
+        "true_label": "micro",
+        "predicted_label": "macro",
+        "confidence": 0.999890152343831,
+        "correct": false,
+        "text": "thus, because systems are tasked with reproducing particular ( often idiosyncratic ) individuation decisions"
+      }
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "macro": {
+    "correct": [
+      {
+        "span_id": "21b13bb711f4b87f",
+        "paper_id": "255096225",
+        "section_name": "B. Conclusion",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999999911603822,
+        "correct": true,
+        "text": "This paper explores the domain-agnostic geometrical constraints to achieve unsupervised domain adaptation in satellite pose estimation. The task is formulated as a minimization problem in a self-training framework by taking the target poses as latent variables. Meanwhile, the fine-grained segmentation is introduced as an auxiliary task to improve performance. The experimental results demonstrate that our method achieves superior performance."
+      },
+      {
+        "span_id": "45e5ee876c60b0d9",
+        "paper_id": "254636085",
+        "section_name": "Abstract",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999999335601557,
+        "correct": true,
+        "text": "We introduce MegaPose, a method to estimate the 6D pose of novel objects, that is, objects unseen during training. At inference time, the method only assumes knowledge of (i) a region of interest displaying the object in the image and (ii) a CAD model of the observed object. The contributions of this work are threefold. First, we present a 6D pose refiner based on a render&compare strategy which can be applied to novel objects. The shape and coordinate system of the novel object are provided as inputs to the network by rendering multiple synthetic views of the object's CAD model. Second, we introduce a novel approach for coarse pose estimation which leverages a network trained to classify whether the pose error between a synthetic rendering and an observed image of the same object can be corrected by the refiner. Third, we introduce a large-scale synthetic dataset of photorealistic images of thousands of objects with diverse visual and shape properties and show that this diversity is crucial to obtain good generalization performance on novel objects. We train our approach on this large synthetic dataset and apply it without retraining to hundreds of novel objects in real images from several pose estimation benchmarks. Our approach achieves state-of-the-art performance on the ModelNet and YCB-Video datasets. An extensive evaluation on the 7 core datasets of the BOP challenge demonstrates that our approach achieves performance competitive with existing approaches that require access to the target objects during training. Code, dataset and trained models are available on the project page: https://megapose6d.github.io/."
+      },
+      {
+        "span_id": "8fc8883a3ea92046",
+        "paper_id": "255186405",
+        "section_name": "Title",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999989217004809,
+        "correct": true,
+        "text": "Spacecraft Pose Estimation Based on Unsupervised Domain Adaptation and on a 3D-Guided Loss Combination"
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "425746b639fcf0fc",
+        "paper_id": "254823586",
+        "section_name": "CONCLUSION",
+        "true_label": "macro",
+        "predicted_label": "micro",
+        "confidence": 0.9999999999960951,
+        "correct": false,
+        "text": "3) Update of task generator: We find the segmentation model would not learn well if the context labels changes too frequently. Therefore, we only update the task generator once several epochs. Specifically, we only update ω following step 8 in Algorithm 1 once 10 epochs. Another benefit of updating ω once several epochs is that we do not need much more time than the vanilla training process. In practice, we find CoLab would just add extra 20% to 30% of the vanilla training time."
+      },
+      {
+        "span_id": "09f5c23046f6b261",
+        "paper_id": "254877205",
+        "section_name": "INTRODUCTION",
+        "true_label": "macro",
+        "predicted_label": "micro",
+        "confidence": 0.9999999948549263,
+        "correct": false,
+        "text": "Heart failure (HF) is a prevalent chronic condition affecting between 1-2% of the adult population. Heart Failure is classified into two subgroups: heart failure with reduced ejection fraction (HFrEF) and heart failure with preserved ejection fraction (HFpEF). Echocardiograms are used to measure left ventricular ejection fraction (LVEF). When a patient has HF with LVEF higher than 50%, a diagnosis of HFpEF is made; and when LVEF is lower than 40%, a diagnosis of HFrEF is made. This distinction is critical as HFpEF and HFrEF are managed differently."
+      },
+      {
+        "span_id": "d2a42ae04e594ff2",
+        "paper_id": "254366267",
+        "section_name": "Introduction",
+        "true_label": "macro",
+        "predicted_label": "micro",
+        "confidence": 0.9999999850815502,
+        "correct": false,
+        "text": "While initially, approaches have focused on local (e.g., multi-scale context, where attention is computed over progressively larger patches around each pixel) or global context (e.g., Parsenet [38]), latter approaches have gravitated towards attentional pooling of information into a set of region representations (e.g., using double-attention [16] or as in ACFNet [56]). The individual pixel representations are then enhanced and contextualized by the aggregated regional feature representations. The main difference among these approaches is how the regions are formed, whether or not regions representations themselves are allowed to interact (e.g., using graph propagation [17]) and how the regional features are aggregated back to enhance pixel representations; some approaches use back-projection while others learn relations between pixels and regions."
+      }
+    ]
+  },
+  "meso": {
+    "correct": [
+      {
+        "span_id": "89fac27207cbf202",
+        "paper_id": "251827430",
+        "section_name": "Experimental results on Toronto-3D dataset",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.999999999897327,
+        "correct": true,
+        "text": "The experiments are first conducted on the Toronto-3D dataset, which contains largescale urban scene point clouds of the real world."
+      },
+      {
+        "span_id": "773585afeb4179eb",
+        "paper_id": "254854625",
+        "section_name": "Experimental setup and dataset specifications",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9999999998871789,
+        "correct": true,
+        "text": "This section introduces the experimental setup and the dataset acquisition procedures [4]."
+      },
+      {
+        "span_id": "d92ce1b6b5f01214",
+        "paper_id": "254535618",
+        "section_name": "Inter-Frame Curve Module",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9999999994122066,
+        "correct": true,
+        "text": "In this subsection, we describe the inter-frame curve (IFC) module to consider the direct spatio-temporal correlations of skeleton sequences."
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "7e2a0b8b517574d6",
+        "paper_id": "254721717",
+        "section_name": "Run-time Performance Estimation",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9999999773416758,
+        "correct": false,
+        "text": "To evaluate performance of our method on detecting poor segmentation results, we assign segmentation masks with a Jaccard score of, at least, 0.8 as high quality and those under as low quality."
+      },
+      {
+        "span_id": "15075118a34b47be",
+        "paper_id": "254706356",
+        "section_name": "Stage Descriptors",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9999995408332941,
+        "correct": false,
+        "text": "Type I and II Early fatty streak (EFS) development First observed when LDL departs the bloodstream to cross into the arterial intima Oxidation of LDL in the intima promotes a cascade of proinflammatory cells and proteins, invoking an inflammatory response within the arterial lining Active smooth muscle cell secretion of chemokines and chemoattractants promotes monocyte migration and monocyte transformation into macrophage migration Lipid intake by macrophages drives plaque formation with lipid accumulation developing as confluent extracellular lipid pools with decreased cellularity EFS is most often observed in childhood and adolescence [24,25] Type III Early fibroatheroma (EF) Marks the bridge between early and advanced lesions, classified as the most difficult stage to identify Excessive uncontrolled inflammatory response exaggerates macrophage accumulation leading to increased accumulation of large pools of lipid coalesces and cell necrosis A combination of enlarged lipid pools and necrosis distorts the architecture of the intima Early fibroatheroma is the first stage to observe the formation of the fibrous cap over necrotic cores to form dominant lesions occupying thirty to fifty percent of the arterial wall volume EF is observed to occur after puberty [24,25] Type IV Advancing atheroma (AA) First lesion to be considered advanced by histological criteria and is used as an umbrella term encompassing all lesions that disrupt intimal structures Unchecked activity of proteolytic enzymes dissolves fibrous tissue, thinning the fibrous cap surrounding the necrotic core Severe disarrangement of intimal structure is caused solely via extensive accumulation of extracellular lipid localized in the deep intima Dense accumulation of extracellular lipid occupies a dominant region of the intima AA is on average observed in ages 55 plus [24,25] Type V and VI Complex lesion (CL) development in advancing atheroma Development of complex lesions, classified as Type V and VI lesions are abstract in formation, deviating from the simple accumulation of lipids observed in EFS and EF Type V lesions are thickened by reparative collagenous tissue layers Large accumulations of extracellular lipids disarrange the normal cell and intercellular matrix structure Subtypes Va and Vb of type V lesions can be further differentiated respectively by the presence of fibrous connective tissue and calcific lesion Type VI reflects surface defects, hematoma and thrombotic deposits The four subtypes of lesion VI include differences in the composition of the blood, relative quantities and distributions in the components of the underlying lesion, and the modifications of shear and tensile forces to which the lesion or intima is exposed [24,25] Page 9 of 25 Kunchur and Mostaço-Guidolin BMC Bioinformatics (2022) 23:542 outputted segmentations are statistically assessed, identifying the method producing the most consistent and accurate plaque boundary segmentations."
+      },
+      {
+        "span_id": "1f3f5bfe3dcaedc3",
+        "paper_id": "255186405",
+        "section_name": "Related Work",
+        "true_label": "meso",
+        "predicted_label": "macro",
+        "confidence": 0.9999986034629692,
+        "correct": false,
+        "text": "This section briefly presents the related work on pose estimation and unsupervised domain adaptation."
+      }
+    ]
+  },
+  "micro": {
+    "correct": [
+      {
+        "span_id": "d2ea7bd1f7aa0cd3",
+        "paper_id": "254591656",
+        "section_name": "D. experiment B :The impact of initial training with different numbers of samples",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 0.9999999999795293,
+        "correct": true,
+        "text": "Overall, the results in Figure 8 show that a greater number of active-selected samples at an early stage of the training can further improve the final accuracy in the training with relatively lower fluctuation in the classifications results. The boxplot of the very last query in the learning process for each of the three tests are shown in Figure 9, where the outliers are Table I. The values were calculated after removing the outliers. According to Table I, when a greater proportion of training samples are active-selected in the tests using 20 initial samples (thus, 80 further samples are actively learned for the first 100 training samples), compared to the test with 100 initial random samples, although the improvement in average accuracy may not be significant as around 1% which is from 98.25% to 99.38%, the standard deviation is smaller showing that overall classification accuracy is more stable if active learning is applied earlier."
+      },
+      {
+        "span_id": "6f298f8ac8543d0f",
+        "paper_id": "254478487",
+        "section_name": "Result",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 0.9999999999444431,
+        "correct": true,
+        "text": "With respect to the mask's effect, only edge (S1~S6) images could seldom converge. Especially, in the case of only edge images with some filtering, the training is not converged (denoted as N/A). This tendency is found in both CAD-based and CG-based patterns. As for edge and mask images (S7~S12), S10 (no filter, width 2) shows comparably the highest performance of all. In the condition of width 1, the edges are sometimes too thin to make the image distinguishable. Furthermore, in the condition of filtering, the effect on the performance is limited. On the whole, however, there is no common tendency in terms of edge width or smoothing parameters. In other words, the condition of the highest performance differs depending on the situation. It means that the parameter of edge width or filter size may be trainable depending on the model shape."
+      },
+      {
+        "span_id": "cce3d3dee1b021d1",
+        "paper_id": "254535618",
+        "section_name": "Ablation Study",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 0.9999999996255027,
+        "correct": true,
+        "text": "To verify the superiority of our D-GC, we conduct experiments by setting the number X-Sub (%) X-Set (%) GFLOPs # Param. DC-GCN [4] 84. of branches of the spatial module to 1, 2, and 4, and the extension ratio r to 1, 2, and 3. Tab. 4 shows that performance of our model does not change according to extension ratio r. However, considering that there is a large performance margin between the ensemble results with two models and four models, as shown in Tab. 1, this heuristically shows that the learning pattern of the model is also different if the extension ratio is different. In addition, the larger the number of branches, the lower the model complexity, and the better the performance as the receptive field increases. In particular, the model with 4 branch layers shows the best performance regardless of the value of r."
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "865f734605c00472",
+        "paper_id": "254336968",
+        "section_name": "Evaluation",
+        "true_label": "micro",
+        "predicted_label": "meso",
+        "confidence": 0.9999930626738971,
+        "correct": false,
+        "text": "To analyze the effect of face blurring on kinematic calculations, we performed statistical tests on joint angles differences (with the reference system) calculated using different data sets based on different models."
+      },
+      {
+        "span_id": "bdc4e9f6a5078c7a",
+        "paper_id": "254722320",
+        "section_name": "Image matching algorithm based on frequency domain analysis",
+        "true_label": "micro",
+        "predicted_label": "meso",
+        "confidence": 0.9998586637174375,
+        "correct": false,
+        "text": "This type of algorithm has a little dependence on the grayscale value, the sharp detection peak, and high matching precision. It also needs the conversion between the spatial and frequency domains, so the matching efficiency is undesirable."
+      },
+      {
+        "span_id": "fdf68add67427b40",
+        "paper_id": "254125472",
+        "section_name": "Method",
+        "true_label": "micro",
+        "predicted_label": "meso",
+        "confidence": 0.9998323154039487,
+        "correct": false,
+        "text": "Classification logic can be carried out across all the probabilistic models to evaluate the likelihood that at inference time, a specific image belongs to a class. Detailed in Section 3.4."
+      }
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "macro": {
+    "correct": [
+      {
+        "span_id": "acbc9a7085925244",
+        "paper_id": "254854301",
+        "section_name": "Introduction",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 1.0,
+        "correct": true,
+        "text": "Over the past few years, training neural machine translation (NMT) models from scratch has become excessively burdensome as the training data size and model capacity continue to increase (Ghorbani et al., 2021;Siddhant et al., 2022;Wang et al., 2022). Therefore, making an existing NMT model continually learn knowledge of new domain or language has attracted intensive interests (Neubig and Hu, 2018;Zeng et al., 2019;Cao et al., 2021;Garcia et al., 2021;Escolano et al., 2021;Gu et al., * Corresponding authors: Peng Li and Yang Liu 2022). However, an equally valuable problem remains unrevealed: Is it possible to leverage knowledge from existing models to continually improve the performance of a given model in its domain?"
+      },
+      {
+        "span_id": "a8ca758c245be1d1",
+        "paper_id": "254129330",
+        "section_name": "Abstract",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999997615814209,
+        "correct": true,
+        "text": "Little attention has been paid to the development of human language technology for truly low-resource languages—i.e., languages with limited amounts of digitally available text data, such as Indigenous languages. However, it has been shown that pretrained multilingual models are able to perform crosslingual transfer in a zero-shot setting even for low-resource languages which are unseen during pretraining. Yet, prior work evaluating performance on unseen languages has largely been limited to shallow token-level tasks. It remains unclear if zero-shot learning of deeper semantic tasks is possible for unseen languages. To explore this question, we present AmericasNLI, a natural language inference dataset covering 10 Indigenous languages of the Americas. We conduct experiments with pretrained models, exploring zero-shot learning in combination with model adaptation. Furthermore, as AmericasNLI is a multiway parallel dataset, we use it to benchmark the performance of different machine translation models for those languages. Finally, using a standard transformer model, we explore translation-based approaches for natural language inference. We find that the zero-shot performance of pretrained models without adaptation is poor for all languages in AmericasNLI, but model adaptation via continued pretraining results in improvements. All machine translation models are rather weak, but, surprisingly, translation-based approaches to natural language inference outperform all other models on that task."
+      },
+      {
+        "span_id": "aa2f69c24240245c",
+        "paper_id": "254877742",
+        "section_name": "Abstract",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "confidence": 0.9999997615814209,
+        "correct": true,
+        "text": "As the complexity of modern software continues to escalate, software engineering has become an increasingly daunting and error-prone endeavor. In recent years, the field of Neural Code Intelligence (NCI) has emerged as a promising solution, leveraging the power of deep learning techniques to tackle analytical tasks on source code with the goal of improving programming efficiency and minimizing human errors within the software industry. Pretrained language models have become a dominant force in NCI research, consistently delivering state-of-the-art results across a wide range of tasks, including code summarization, generation, and translation. In this paper, we present a comprehensive survey of the NCI domain, including a thorough review of pretraining techniques, tasks, datasets, and model architectures. We hope this paper will serve as a bridge between the natural language and programming language communities, offering insights for future research in this rapidly evolving field."
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "ae8d529897b3b71d",
+        "paper_id": "254535672",
+        "section_name": "Conclusions",
+        "true_label": "macro",
+        "predicted_label": "micro",
+        "confidence": 0.9999998807907104,
+        "correct": false,
+        "text": "For sequence classification tasks, we construct the MRC query and context as followed. MCQA: The query is the concatenation of the question and one choice, and the context is the supporting document. MNLI: The query is the entailment label concatenated with the label description, and the context is the concatenation of the premise and hypothesis. SST-2: The query is the sentiment label concatenated with the label description, and the context is the input sentence. We use the Eq. 3 to fine-tune the classification tasks. Note that only the correct query-context pair would get Y cls = 1. Otherwise, the supervision is Y cls = 0. During inference, we select the query-context pair with the highest S 1,1 among all MRC examples constructed for the sequence classification instance as the final prediction."
+      },
+      {
+        "span_id": "4291b2aa27b25e07",
+        "paper_id": "255096289",
+        "section_name": "CONCLUSION, LIMITATIONS AND FUTURE WORK",
+        "true_label": "macro",
+        "predicted_label": "meso",
+        "confidence": 0.9992166757583618,
+        "correct": false,
+        "text": "The unsupervised classification model is built on pretrained Word Embeddings and Cosine Similarity. In the absence of training data, the efficiency and effectiveness of this model are verified in a real business case where the model is applied to classify shipping cargo content."
+      },
+      {
+        "span_id": "30477a40d0319f7f",
+        "paper_id": "254877731",
+        "section_name": "Introduction",
+        "true_label": "macro",
+        "predicted_label": "micro",
+        "confidence": 0.9978185892105103,
+        "correct": false,
+        "text": "A main research direction of MMT has been how to best exploit image representations and combine the image and text modalities 1 https://github.com/MatthieuFP/CoMMuTE.git \"The glasses are broken.\" Translation: \"Les verres sont cassés.\" Translation: \"Les lunettes sont cassées.\" Figure 1: Visual context resolving the ambiguity of English word glasses for English-to-French translation. Caglayan et al., 2021;Li et al., 2022). It has typically been difficult to surpass strong text-only baselines, the image modality often being ignored (Wu et al., 2021). A major issue holding back progress is that most current stateof-the-art MMT models Elliott and Kádár, 2017;Wu et al., 2021;Li et al., 2022) are trained solely on the ∼30k examples of the Multi30k dataset , comprising image captions and their translations. This causes two issues: (i) the models do not exploit the large amount of text-only data available (Tiedemann, 2012;Lison and Tiedemann, 2016;Wołk and Marasek, 2014) and therefore perform poorly in comparison to state-of-the-art text-only MT systems, and (ii) the examples themselves are illadapted to evaluating the use of the image modality, since very few examples actually require the image in order to be correctly translated. 2 In this article, we aim to overcome these problems by proposing (i) a new MMT approach that is capable of exploiting text-only monolingual, parallel data as well as captioning data, and reaches a good balance between maintaining high MT performance and exploiting image representations, and (ii) an evaluation set, CoMMuTE, containing contrastive evaluation pairs where the image provides the necessary context to disambiguate between multiple meanings of the same source sentence."
+      }
+    ]
+  },
+  "meso": {
+    "correct": [
+      {
+        "span_id": "8dc7575dde3c422d",
+        "paper_id": "254563804",
+        "section_name": "Related Work",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9999997615814209,
+        "correct": true,
+        "text": "Text summarization research dates back to 1958 when the first article on the topic [7] was published."
+      },
+      {
+        "span_id": "2ed93a0ad78e7e98",
+        "paper_id": "235422199",
+        "section_name": "Technical Approach and Experiments",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9999994039535522,
+        "correct": true,
+        "text": "In this research, we select Twitter as a representative source of social media big data, and we develop our technical approach and the proof-of-concept solution and conduct experiments with R."
+      },
+      {
+        "span_id": "111f474a1ed41e2d",
+        "paper_id": "254685906",
+        "section_name": "A Training data",
+        "true_label": "meso",
+        "predicted_label": "meso",
+        "confidence": 0.9999994039535522,
+        "correct": true,
+        "text": "We list in Table 5 the amount of data (bitexts) used to train our models."
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "9b2fcaf5e72875a9",
+        "paper_id": "254247144",
+        "section_name": "Interpretability",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9991389513015747,
+        "correct": false,
+        "text": "Integrated Gradients by Sundararajan et al. (2017) (IG) identifies which tokens have the most weight for determining the target label via inspecting the gradients of the target label with respect to the input features."
+      },
+      {
+        "span_id": "52854637c47a3279",
+        "paper_id": "254823202",
+        "section_name": "Summary-1",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9984931945800781,
+        "correct": false,
+        "text": "Reinhold Roth scored the least number of points in the year he was on the suzuki team."
+      },
+      {
+        "span_id": "0a2a9334c0276800",
+        "paper_id": "254366664",
+        "section_name": "Evaluation Metrics",
+        "true_label": "meso",
+        "predicted_label": "micro",
+        "confidence": 0.9978652596473694,
+        "correct": false,
+        "text": "Following Sang (2002), entity-level F1-score was used as the evaluation metric."
+      }
+    ]
+  },
+  "micro": {
+    "correct": [
+      {
+        "span_id": "a65a4fcb8974f099",
+        "paper_id": "254247144",
+        "section_name": "Setup",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 1.0,
+        "correct": true,
+        "text": "In most IOB classification tasks the distribution of labels is skewed because O is overrepresented. For extracting answer spans from questions this is extremely pronounced, where the majority of the context document does not contain the answer: e.g. for English 99% of tokens are labeled O. Unfortunately, a naïve training procedure would lead to a constant model, which always predict O and, thus, achieve a low loss. We correct for this by weighting the cross-entropy loss for the most frequent label less (0.01). The learning rate decays at a linear rate from 10 −3 to 10 −5 over the course training. Both for training and evaluation the question and context are concatenated during tokenization. If necessary because of its length the input is split into multiple samples with the full question and truncated but overlapping context."
+      },
+      {
+        "span_id": "47f314a8764f2288",
+        "paper_id": "254535672",
+        "section_name": "Pre-training of PMR",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 1.0,
+        "correct": true,
+        "text": "Concretely, we consider sentences within a window size W of the anchor as the MRC context, while for the query, we use the first T sentences from the home article. Using longer context and query can enable the encoder to learn richer semantics and handle downstream tasks with longer input. Note that the context may cover multiple mentions of the same anchor entity. In this case, we treat all of them as valid MRC answers (i.e. K > 1) so as not to confuse the model training. More importantly, it naturally resembles the multi-span extraction downstream tasks like NER. To avoid information leakage of the query as well as keep its grammar correctness, we substitute the text spans overlapped more than 50% with the anchor entity name to the word it in the query."
+      },
+      {
+        "span_id": "33ff479c8361590f",
+        "paper_id": "254877111",
+        "section_name": "Investigating causes of loss in performance",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "confidence": 1.0,
+        "correct": true,
+        "text": "We design an ablation experiment to measure how the performance drop would change if there is no distraction of the decoder by embeddings of noisy tokens. Any drop in output quality in such as setup is attributable only to the corruption of the clean tokens' encoder representations. We remove the embeddings of the (ground truth) noisy tokens after passing the noisy input through the encoder of the PEGASUS model, and then use the decoder to generate the summary using only the remaining embeddings ( Figure 5). Since the removal is done after passing the whole input through the self-attention layers of the encoder, the clean tokens' embeddings are already distorted, and the decoder has to generate the summary using these distorted embeddings. The difference from the usual scenario is that the decoder does not have to include the noisy tokens' embeddings in the computation. We find that this mostly leads to an increase in output quality compared to when the noisy token embeddings are not removed ( Figure 6). The biggest improvements come for XSUM and SAMSum datasets, whereas for CNN/DailyMail dataset no improvement is seen for any of the 4 noise types. Surprisingly, for the RedditTIFU-long dataset with the URL and Randomsent noise types, removing the noisy tokens' embeddings decreases the ROUGE scores further, suggesting that retaining those embeddings is somehow useful for the decoder. The above ablation study highlights the necessity of running the encoder twice -once for computing OOD scores to detect noise, and then again to compute the encoder representations of the input after removing noisy tokens. While one can save computation time by reusing the encoder embeddings of the clean tokens computed during OOD scoring to feed them to the decoder for generation, results from the ablation suggest that this would give sub-optimal performance recovery ( Figure 6)."
+      }
+    ],
+    "failed": [
+      {
+        "span_id": "916ad1de78e175cf",
+        "paper_id": "254877120",
+        "section_name": "Performance Results",
+        "true_label": "micro",
+        "predicted_label": "macro",
+        "confidence": 0.9992128610610962,
+        "correct": false,
+        "text": "Comparing the performance under the centralized setting, we find that all tuning methods suffer from a drop in performance under the federated setting shown in Table 2. We think it is interesting to design suitable federation learning algorithms combining PETuning methods to bridge the performance gap caused by Non-IID in FL. This will be explored in our future work."
+      },
+      {
+        "span_id": "a3d25512e6418ad7",
+        "paper_id": "254823202",
+        "section_name": "C.4 Further Analysis of Saliency Metric (Cont. from §4.2)",
+        "true_label": "micro",
+        "predicted_label": "meso",
+        "confidence": 0.998432457447052,
+        "correct": false,
+        "text": "D Prompts (Cont. from §4) WebNLG. Table 13 shows an example of direct prompting (Zhang et al., 2022) for WebNLG. In Table 15 and LogicNLG. Table 17 shows an example of direct prompting for LogicNLG."
+      },
+      {
+        "span_id": "c6d3bcbb21236230",
+        "paper_id": "254246982",
+        "section_name": "Result Analysis",
+        "true_label": "micro",
+        "predicted_label": "macro",
+        "confidence": 0.9937149882316589,
+        "correct": false,
+        "text": "Analysis of Clustering Methods. In Table 6, we show the results of intent induction comparing models that clustering algorithms. Unlike the results in Task 1, Agglomerative clustering and BIRCH outperform the other baselines. Agglomerative clustering starts with the utterances as individual clusters and merge them if they have similar intents. Experiment cogently demonstrates that the approach exploiting MiniLM MULTIQA and Agglomerative clustering achieves state-of-the-art results among the other methods in intent induction task."
+      }
+    ]
+  }
+}

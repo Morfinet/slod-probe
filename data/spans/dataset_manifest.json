@@ -1,0 +1,16 @@
+{
+  "source": "allenai/peS2o validation shard (S2ORC-derived)",
+  "source_url": "https://huggingface.co/datasets/allenai/peS2o/resolve/main/data/v1/validation-00001-of-00002.json.gz",
+  "seed": 42,
+  "records_scanned": 51323,
+  "spans": 1500,
+  "papers": 590,
+  "counts": {
+    "nlp/macro": 250,
+    "nlp/meso": 250,
+    "nlp/micro": 250,
+    "cv/macro": 250,
+    "cv/meso": 250,
+    "cv/micro": 250
+  }
+}
