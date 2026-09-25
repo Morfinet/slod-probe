@@ -2,198 +2,252 @@
   "macro": {
     "correct": [
       {
-        "span_id": "acbc9a7085925244",
-        "paper_id": "254854301",
+        "span_id": "45bfca73801d082b",
+        "paper_id": "254125117",
+        "repeat": 1,
+        "fold": 2,
         "section_name": "Introduction",
         "true_label": "macro",
         "predicted_label": "macro",
-        "confidence": 1.0,
+        "majority_prediction": "micro",
+        "confidence": 0.9999999886561165,
         "correct": true,
-        "text": "Over the past few years, training neural machine translation (NMT) models from scratch has become excessively burdensome as the training data size and model capacity continue to increase (Ghorbani et al., 2021;Siddhant et al., 2022;Wang et al., 2022). Therefore, making an existing NMT model continually learn knowledge of new domain or language has attracted intensive interests (Neubig and Hu, 2018;Zeng et al., 2019;Cao et al., 2021;Garcia et al., 2021;Escolano et al., 2021;Gu et al., * Corresponding authors: Peng Li and Yang Liu 2022). However, an equally valuable problem remains unrevealed: Is it possible to leverage knowledge from existing models to continually improve the performance of a given model in its domain?"
+        "text": "The World Health Organization (WHO) recognizes climate change as the most significant health threat to humans in the 21 st century, which comes in many forms and is expected to cause approximately 250,000 additional deaths annually from 2030 to 2050 [1]. With timely and effective adaptation, many of these health risks can be reduced or avoided, but this requires comprehensive studies and policies that are multi-sectoral, multi-system, and collaborative at different scales [2]. Reaching that goal needs a thorough understanding and synthesis of the ever-growing research to inform policies [3]. While systematic reviews are the only commonly accepted tool for evidence synthesis [4], exponential growth in literature makes manual methods unattainable and biased toward more restrictive inclusion criteria [5]. To overcome these limitations, a recent study used different machine learning methods to map climate and health scientific literature [5]. Such comprehensive mappings can provide necessary inputs into global climate and health assessment, especially considering that bibliographic analysis of climate change policy documents shows that only 1.2% of climate change papers have at least one policy citation [6]. While such advancements in climate and health mapping can help distinguish gaps and focus areas, it becomes more challenging to capture the hidden knowledge in the ever-increasing literature. To this end, we propose to develop relevant multi-domain LMs that can serve as a foundation for various downstream NLP tasks such as identifying similarities between health and climate concepts, relationship extraction, summarization, classification, policy text generation, etc. [7]. To the best of our knowledge, this is the first work that proposes developing multiple domain specific LMs with different datasets and fine-tuning variations for the considered domains."
       },
       {
-        "span_id": "a8ca758c245be1d1",
-        "paper_id": "254129330",
-        "section_name": "Abstract",
+        "span_id": "05b2ef01ebe019cd",
+        "paper_id": "254877099",
+        "repeat": 3,
+        "fold": 1,
+        "section_name": "Conclusion",
         "true_label": "macro",
         "predicted_label": "macro",
-        "confidence": 0.9999997615814209,
+        "majority_prediction": "micro",
+        "confidence": 0.9999999781521711,
         "correct": true,
-        "text": "Little attention has been paid to the development of human language technology for truly low-resource languages—i.e., languages with limited amounts of digitally available text data, such as Indigenous languages. However, it has been shown that pretrained multilingual models are able to perform crosslingual transfer in a zero-shot setting even for low-resource languages which are unseen during pretraining. Yet, prior work evaluating performance on unseen languages has largely been limited to shallow token-level tasks. It remains unclear if zero-shot learning of deeper semantic tasks is possible for unseen languages. To explore this question, we present AmericasNLI, a natural language inference dataset covering 10 Indigenous languages of the Americas. We conduct experiments with pretrained models, exploring zero-shot learning in combination with model adaptation. Furthermore, as AmericasNLI is a multiway parallel dataset, we use it to benchmark the performance of different machine translation models for those languages. Finally, using a standard transformer model, we explore translation-based approaches for natural language inference. We find that the zero-shot performance of pretrained models without adaptation is poor for all languages in AmericasNLI, but model adaptation via continued pretraining results in improvements. All machine translation models are rather weak, but, surprisingly, translation-based approaches to natural language inference outperform all other models on that task."
+        "text": "We collected MULTI 3 NLU ++ , a dataset that facilitates multilinugual, multi-label, multi-domain Natural Language Understanding for task-oriented dialogue. Our dataset incorporates core properties of from its predecessor NLU++ (Casanueva et al., 2022): a multi-intent and slot-rich ontology, a mixture of generic and domain-specific intents for reusability, and utterances that are based on complex scenarios. We investigate these properties in a multilingual setting for Spanish, Marathi, Turkish, and Amharic. We implemented MLP-based and QA-based intent detection baselines across different data setups, transfer learning setups, and multilingual models. From a wide set of observations, we highlight that (i) there is a significant drop in performance across all languages as compared to NLU++ with performance drops increas-ing as we progress from high to low-resource languages; (ii) zero-shot performance improves when the source language has lower resources; (iii) multilingual question-answering models rely on shallower heuristics than cross-lingual language understanding. We propose that the community use this dataset to advance research in multilingual taskoriented dialogue."
       },
       {
-        "span_id": "aa2f69c24240245c",
-        "paper_id": "254877742",
-        "section_name": "Abstract",
+        "span_id": "2b3cc832c6bb6f50",
+        "paper_id": "254926857",
+        "repeat": 1,
+        "fold": 2,
+        "section_name": "Introduction",
         "true_label": "macro",
         "predicted_label": "macro",
-        "confidence": 0.9999997615814209,
+        "majority_prediction": "micro",
+        "confidence": 0.9999999669710722,
         "correct": true,
-        "text": "As the complexity of modern software continues to escalate, software engineering has become an increasingly daunting and error-prone endeavor. In recent years, the field of Neural Code Intelligence (NCI) has emerged as a promising solution, leveraging the power of deep learning techniques to tackle analytical tasks on source code with the goal of improving programming efficiency and minimizing human errors within the software industry. Pretrained language models have become a dominant force in NCI research, consistently delivering state-of-the-art results across a wide range of tasks, including code summarization, generation, and translation. In this paper, we present a comprehensive survey of the NCI domain, including a thorough review of pretraining techniques, tasks, datasets, and model architectures. We hope this paper will serve as a bridge between the natural language and programming language communities, offering insights for future research in this rapidly evolving field."
+        "text": "LLMs are generally trained on publicly available text Raffel et al., 2020;Brown et al., 2020) and code , and they are not expected to generalize to domain-specific semantic parsing tasks in a similar way. The output of semantic parsing comprises user-defined domain-specific functions, argument names, and syntax where the inductive bias from pre-training is less helpful. Instead, we leverage the LLM's ability to zero-shot answer reading comprehension questions. In this work, we propose ZEROTOP that decomposes the semantic parsing task into one of answering a series of extractive and abstractive questions, corresponding to its top-level intent and a set of relevant slots. For example, as shown in Figure 1, the utterance is decomposed into multiple questions related to the intent (alarm creation) and slots (parameters of the alarm creation). The answers to these questions can be combined to infer the target meaning representation."
       }
     ],
     "failed": [
       {
         "span_id": "ae8d529897b3b71d",
         "paper_id": "254535672",
+        "repeat": 1,
+        "fold": 3,
         "section_name": "Conclusions",
         "true_label": "macro",
         "predicted_label": "micro",
-        "confidence": 0.9999998807907104,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999687216646,
         "correct": false,
         "text": "For sequence classification tasks, we construct the MRC query and context as followed. MCQA: The query is the concatenation of the question and one choice, and the context is the supporting document. MNLI: The query is the entailment label concatenated with the label description, and the context is the concatenation of the premise and hypothesis. SST-2: The query is the sentiment label concatenated with the label description, and the context is the input sentence. We use the Eq. 3 to fine-tune the classification tasks. Note that only the correct query-context pair would get Y cls = 1. Otherwise, the supervision is Y cls = 0. During inference, we select the query-context pair with the highest S 1,1 among all MRC examples constructed for the sequence classification instance as the final prediction."
       },
       {
-        "span_id": "4291b2aa27b25e07",
-        "paper_id": "255096289",
-        "section_name": "CONCLUSION, LIMITATIONS AND FUTURE WORK",
+        "span_id": "c35d13448a070600",
+        "paper_id": "254276625",
+        "repeat": 1,
+        "fold": 4,
+        "section_name": "Abstract",
         "true_label": "macro",
-        "predicted_label": "meso",
-        "confidence": 0.9992166757583618,
+        "predicted_label": "micro",
+        "majority_prediction": "meso",
+        "confidence": 0.999999488606433,
         "correct": false,
-        "text": "The unsupervised classification model is built on pretrained Word Embeddings and Cosine Similarity. In the absence of training data, the efficiency and effectiveness of this model are verified in a real business case where the model is applied to classify shipping cargo content."
+        "text": "Purpose Diagnostic statements for pituitary adenomas (PAs) are complex and unstandardized. We aimed to determine the most commonly used elements contained in the statements and their combination patterns and variations in real-world clinical practice, with the ultimate goal of promoting standardized diagnostic recording and establishing an efficient element extraction process. Methods Patient medical records from 2012 to 2020 that included PA among the first three diagnoses were included. After manually labeling the elements in the diagnostic texts, we obtained element types and training sets, according to which an information extraction model was constructed based on the word segmentation model “Jieba” to extract information contained in the remaining diagnostic texts. Results A total of 576 different diagnostic statements from 4010 texts of 3770 medical records were enrolled in the analysis. The first ten diagnostic elements related to PA were histopathology, tumor location, endocrine status, tumor size, invasiveness, recurrence, diagnostic confirmation, Knosp grade, residual tumor, and refractoriness. The automated extraction model achieved F1-scores that reached 100% for all ten elements in the second round and 97.3–100.0% in the test set consisting of an additional 532 diagnostic texts. Tumor location, endocrine status, histopathology, and tumor size were the most commonly used elements, and diagnoses composed of the above elements were the most frequent. Endocrine status had the greatest expression variability, followed by Knosp grade. Among all the terms, the percentage of loss of tumor size was among the highest (21%). Among statements where the principal diagnoses were PAs, 18.6% did not have information on tumor size, while for those with other diagnoses, this percentage rose to 48% (P < 0.001). Conclusion Standardization of the diagnostic statement for PAs is unsatisfactory in real-world clinical practice. This study could help standardize a structured pattern for PA diagnosis and establish a foundation for research-friendly, high-quality clinical information extraction."
       },
       {
-        "span_id": "30477a40d0319f7f",
-        "paper_id": "254877731",
+        "span_id": "23ac9f2e8386261e",
+        "paper_id": "255033441",
+        "repeat": 3,
+        "fold": 0,
         "section_name": "Introduction",
         "true_label": "macro",
         "predicted_label": "micro",
-        "confidence": 0.9978185892105103,
+        "majority_prediction": "meso",
+        "confidence": 0.9999906785215948,
         "correct": false,
-        "text": "A main research direction of MMT has been how to best exploit image representations and combine the image and text modalities 1 https://github.com/MatthieuFP/CoMMuTE.git \"The glasses are broken.\" Translation: \"Les verres sont cassés.\" Translation: \"Les lunettes sont cassées.\" Figure 1: Visual context resolving the ambiguity of English word glasses for English-to-French translation. Caglayan et al., 2021;Li et al., 2022). It has typically been difficult to surpass strong text-only baselines, the image modality often being ignored (Wu et al., 2021). A major issue holding back progress is that most current stateof-the-art MMT models Elliott and Kádár, 2017;Wu et al., 2021;Li et al., 2022) are trained solely on the ∼30k examples of the Multi30k dataset , comprising image captions and their translations. This causes two issues: (i) the models do not exploit the large amount of text-only data available (Tiedemann, 2012;Lison and Tiedemann, 2016;Wołk and Marasek, 2014) and therefore perform poorly in comparison to state-of-the-art text-only MT systems, and (ii) the examples themselves are illadapted to evaluating the use of the image modality, since very few examples actually require the image in order to be correctly translated. 2 In this article, we aim to overcome these problems by proposing (i) a new MMT approach that is capable of exploiting text-only monolingual, parallel data as well as captioning data, and reaches a good balance between maintaining high MT performance and exploiting image representations, and (ii) an evaluation set, CoMMuTE, containing contrastive evaluation pairs where the image provides the necessary context to disambiguate between multiple meanings of the same source sentence."
+        "text": "The original MRC systems were designed with the assumption that all questions could be answered according to the given passage, which is not always the case in the real world. The recent progress of the MRC task has required that the model distinguishes between unanswerable questions and answerable questions to avoid giving unreasonable answers. To solve this challenge, the model must carefully handle two aspects: i) distinguish unanswerable questions effectively; ii) give correct answers to answerable questions. Table 1. An example is that the correct answer appears multiple times. The first occurrence of \"cà phê\" is the correct answer; the remaining words are incorrect Passage: Việt Nam là một nước xuất khẩu cà phê, do đó nhiều loại cà phê được sử dụng ngày càng thịnh hành trong ẩm thực của người Việt tại khắp các vùng miền, đặc biệt tại các đô thị. Cà phê thường được pha, chiết bằng phin pha cà phê. Theo thuộc tính nhiệt, có thể kể ra hai cách uống phổ biến là cà phê nóng và cà phê đá, xét theo nguyên liệu phụ gia, cà phê thuần nhất gọi là cà phê đen, và cà phê sữa. Nước chiết cà phê cũng thường dùng để chế thêm vào một số loại nước sinh tố hay sữa chua cho hương vị đặc biệt. Ngày nay, cà phê hòa tan cũng là loại cà phê thông dụng. [2] and unanswerable questions about the same passage. To work effectively on this dataset, the MRC model must answer the answerable questions and identify questions that cannot be answered. For the issue one mentioned above, get ideas from Retrospective Reader [3]; in addition to the in-depth question answering reader, we add a task classifier for unanswerable classification. Moreover, to predict accurate answers to answerable questions, we researched and decided to apply BLANC to our advanced reader."
       }
     ]
   },
   "meso": {
     "correct": [
       {
-        "span_id": "8dc7575dde3c422d",
-        "paper_id": "254563804",
-        "section_name": "Related Work",
+        "span_id": "b7cfe55785a5480f",
+        "paper_id": "254926783",
+        "repeat": 1,
+        "fold": 4,
+        "section_name": "Voting Question",
         "true_label": "meso",
         "predicted_label": "meso",
-        "confidence": 0.9999997615814209,
+        "majority_prediction": "meso",
+        "confidence": 0.9999999996903586,
         "correct": true,
-        "text": "Text summarization research dates back to 1958 when the first article on the topic [7] was published."
+        "text": "In this section, we discuss the results of the voting question step."
       },
       {
-        "span_id": "2ed93a0ad78e7e98",
-        "paper_id": "235422199",
-        "section_name": "Technical Approach and Experiments",
+        "span_id": "088799e25af83761",
+        "paper_id": "254246952",
+        "repeat": 1,
+        "fold": 4,
+        "section_name": "DATA",
         "true_label": "meso",
         "predicted_label": "meso",
-        "confidence": 0.9999994039535522,
+        "majority_prediction": "meso",
+        "confidence": 0.9999999995483666,
         "correct": true,
-        "text": "In this research, we select Twitter as a representative source of social media big data, and we develop our technical approach and the proof-of-concept solution and conduct experiments with R."
+        "text": "In this section, we describe the collected datasets and the data preprocessing steps."
       },
       {
-        "span_id": "111f474a1ed41e2d",
-        "paper_id": "254685906",
-        "section_name": "A Training data",
+        "span_id": "f64ecf5338719648",
+        "paper_id": "254719129",
+        "repeat": 3,
+        "fold": 2,
+        "section_name": "D. Ensemble Multi Classifier",
         "true_label": "meso",
         "predicted_label": "meso",
-        "confidence": 0.9999994039535522,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999986553871,
         "correct": true,
-        "text": "We list in Table 5 the amount of data (bitexts) used to train our models."
+        "text": "We use Random Forest (RF) to build the SSL model."
       }
     ],
     "failed": [
       {
-        "span_id": "9b2fcaf5e72875a9",
-        "paper_id": "254247144",
-        "section_name": "Interpretability",
+        "span_id": "34b7a0338048bbe9",
+        "paper_id": "254877312",
+        "repeat": 3,
+        "fold": 4,
+        "section_name": "CO 3 : Contextualizing Commonsense for Conversations",
         "true_label": "meso",
-        "predicted_label": "micro",
-        "confidence": 0.9991389513015747,
+        "predicted_label": "macro",
+        "majority_prediction": "macro",
+        "confidence": 0.9999997756822733,
         "correct": false,
-        "text": "Integrated Gradients by Sundararajan et al. (2017) (IG) identifies which tokens have the most weight for determining the target label via inspecting the gradients of the target label with respect to the input features."
+        "text": "Step-by-step We propose CO 3 , a framework for distilling conversations from large pre-trained language models (PLMs) by contextualizing (i.e., adding more context information) social commonsense knowledge step-by-step."
       },
       {
-        "span_id": "52854637c47a3279",
-        "paper_id": "254823202",
-        "section_name": "Summary-1",
+        "span_id": "bd2a9fe2de108a4c",
+        "paper_id": "254366369",
+        "repeat": 1,
+        "fold": 3,
+        "section_name": "BB Families would feed their cats with carrots/fish",
         "true_label": "meso",
         "predicted_label": "micro",
-        "confidence": 0.9984931945800781,
+        "majority_prediction": "macro",
+        "confidence": 0.9999990165945475,
         "correct": false,
-        "text": "Reinhold Roth scored the least number of points in the year he was on the suzuki team."
+        "text": "The example in the CW condition presents a counterfactual scenario in which cats are vegetariansas a result the logical target completion is \"carrots\", but because cats are in reality more likely to eat fish, this contradicts world knowledge."
       },
       {
-        "span_id": "0a2a9334c0276800",
-        "paper_id": "254366664",
-        "section_name": "Evaluation Metrics",
+        "span_id": "384bab4ef300c733",
+        "paper_id": "254563992",
+        "repeat": 1,
+        "fold": 3,
+        "section_name": "Algorithm 1: Domain Knowledge Localization",
         "true_label": "meso",
         "predicted_label": "micro",
-        "confidence": 0.9978652596473694,
+        "majority_prediction": "macro",
+        "confidence": 0.9999982701826478,
         "correct": false,
-        "text": "Following Sang (2002), entity-level F1-score was used as the evaluation metric."
+        "text": "Input: A text x, the entities list E, words embeddings dictionary Embeds, and similarity threshold θ Output: A matched pair list M atchs of mentions in x and entities in E 1 Initialize M atchs as an empty list ; 2 Preprocess x with NLP preprocessing pipeline to get word list words ; 3 Construct entity embedding matrix E emb and embedding matrix W emb by searching for E and words from Embeds ; 4 Compute similarity matrix Sim = W emb × E emb .T ; 5 Query the maximum similarity sim values between each word and entity; 6 if sim value θ then 7 Find the index of sim values in Sim ; 8 Get the pair (word, entity) according to index ; 9 Add (word, entity) to M atchs ; 10 end 11 Return M atchs ; similarity [48], as it encodes word semantic information that cannot be caught by tradition similarity measures such as edit distance and hamming distance [46]."
       }
     ]
   },
   "micro": {
     "correct": [
       {
-        "span_id": "a65a4fcb8974f099",
-        "paper_id": "254247144",
-        "section_name": "Setup",
+        "span_id": "227684f29204980b",
+        "paper_id": "254719129",
+        "repeat": 4,
+        "fold": 0,
+        "section_name": "F. Semi-Supervised Learning Architecture",
         "true_label": "micro",
         "predicted_label": "micro",
-        "confidence": 1.0,
+        "majority_prediction": "meso",
+        "confidence": 0.999999999995238,
         "correct": true,
-        "text": "In most IOB classification tasks the distribution of labels is skewed because O is overrepresented. For extracting answer spans from questions this is extremely pronounced, where the majority of the context document does not contain the answer: e.g. for English 99% of tokens are labeled O. Unfortunately, a naïve training procedure would lead to a constant model, which always predict O and, thus, achieve a low loss. We correct for this by weighting the cross-entropy loss for the most frequent label less (0.01). The learning rate decays at a linear rate from 10 −3 to 10 −5 over the course training. Both for training and evaluation the question and context are concatenated during tokenization. If necessary because of its length the input is split into multiple samples with the full question and truncated but overlapping context."
+        "text": "For an experiment, data are coded to D1, D2, D3, and D4. We randomly divided the dataset into training data and test data in a 9:1 ratio. The number of labeled test data for each D1, D2, D3, and D4 is 850 (approximately 10% of all documents). The number of labeled training data (annotated dataset) in D1, D2, D3, and D4 are 1700, 850, 425, and 212, respectively. The leftover training data was used as the unlabeled data set. The baseline model in D1, D2, D3, and D4 was built with training data only. The baseline model was tested using labeled test data. In Table 2, we display the accuracy and F1-score of the baseline and semi-supervised learning (SSL) model in D1, D2, D3, and D4 under different numbers of thresholds, respectively."
+      },
+      {
+        "span_id": "c7f4b6e8362d6eb7",
+        "paper_id": "254618775",
+        "repeat": 2,
+        "fold": 0,
+        "section_name": "Results of information detection based on EAST model",
+        "true_label": "micro",
+        "predicted_label": "micro",
+        "majority_prediction": "macro",
+        "confidence": 0.999999999960391,
+        "correct": true,
+        "text": "Analysis: when creating a text box using the deep learning model-EAST, the detection rate of the region containing the text in the image is relatively high for regions A and C (87% and 83%). However, for region B (the region that has the learning results table of the student form), the accuracy is 54%, nearly 30% lower than in regions A and C. With conventional image processing algorithms for region B (with the same input data type), the result is 63%, higher than that of the EAST model (9% Table 4 shows the results and using the OCR technique to check the recognition on a dataset with 1550 images, including 1240 train images and 310 test images. Table 5 shows the test results of correctly identified image regions, and Table 6 shows the results of wrongly recognized images after testing. Through the statistics of the results of training and evaluation, the OCR technique achieved an excellent rate with the WER measure of 36.02%. Each image has an average size of 32×525 with a recognition processing time of about 0.0471s. The total processing time of 310 images with an average size of 32×525 is 13,6214s. Table 5. Illustrated correctly recognized image region Table 6. Illustrated image region misidentified"
       },
       {
         "span_id": "47f314a8764f2288",
         "paper_id": "254535672",
+        "repeat": 3,
+        "fold": 0,
         "section_name": "Pre-training of PMR",
         "true_label": "micro",
         "predicted_label": "micro",
-        "confidence": 1.0,
+        "majority_prediction": "meso",
+        "confidence": 0.9999999932981289,
         "correct": true,
         "text": "Concretely, we consider sentences within a window size W of the anchor as the MRC context, while for the query, we use the first T sentences from the home article. Using longer context and query can enable the encoder to learn richer semantics and handle downstream tasks with longer input. Note that the context may cover multiple mentions of the same anchor entity. In this case, we treat all of them as valid MRC answers (i.e. K > 1) so as not to confuse the model training. More importantly, it naturally resembles the multi-span extraction downstream tasks like NER. To avoid information leakage of the query as well as keep its grammar correctness, we substitute the text spans overlapped more than 50% with the anchor entity name to the word it in the query."
-      },
-      {
-        "span_id": "33ff479c8361590f",
-        "paper_id": "254877111",
-        "section_name": "Investigating causes of loss in performance",
-        "true_label": "micro",
-        "predicted_label": "micro",
-        "confidence": 1.0,
-        "correct": true,
-        "text": "We design an ablation experiment to measure how the performance drop would change if there is no distraction of the decoder by embeddings of noisy tokens. Any drop in output quality in such as setup is attributable only to the corruption of the clean tokens' encoder representations. We remove the embeddings of the (ground truth) noisy tokens after passing the noisy input through the encoder of the PEGASUS model, and then use the decoder to generate the summary using only the remaining embeddings ( Figure 5). Since the removal is done after passing the whole input through the self-attention layers of the encoder, the clean tokens' embeddings are already distorted, and the decoder has to generate the summary using these distorted embeddings. The difference from the usual scenario is that the decoder does not have to include the noisy tokens' embeddings in the computation. We find that this mostly leads to an increase in output quality compared to when the noisy token embeddings are not removed ( Figure 6). The biggest improvements come for XSUM and SAMSum datasets, whereas for CNN/DailyMail dataset no improvement is seen for any of the 4 noise types. Surprisingly, for the RedditTIFU-long dataset with the URL and Randomsent noise types, removing the noisy tokens' embeddings decreases the ROUGE scores further, suggesting that retaining those embeddings is somehow useful for the decoder. The above ablation study highlights the necessity of running the encoder twice -once for computing OOD scores to detect noise, and then again to compute the encoder representations of the input after removing noisy tokens. While one can save computation time by reusing the encoder embeddings of the clean tokens computed during OOD scoring to feed them to the decoder for generation, results from the ablation suggest that this would give sub-optimal performance recovery ( Figure 6)."
       }
     ],
     "failed": [
       {
-        "span_id": "916ad1de78e175cf",
-        "paper_id": "254877120",
-        "section_name": "Performance Results",
+        "span_id": "bd2cc01bc319f534",
+        "paper_id": "252819182",
+        "repeat": 3,
+        "fold": 1,
+        "section_name": "Expected Dataset",
         "true_label": "micro",
         "predicted_label": "macro",
-        "confidence": 0.9992128610610962,
+        "majority_prediction": "micro",
+        "confidence": 0.9999998176607842,
         "correct": false,
-        "text": "Comparing the performance under the centralized setting, we find that all tuning methods suffer from a drop in performance under the federated setting shown in Table 2. We think it is interesting to design suitable federation learning algorithms combining PETuning methods to bridge the performance gap caused by Non-IID in FL. This will be explored in our future work."
+        "text": "One can use tools such as HeidelTime (Strötgen and Gertz, 2010) or SUTime (Chang and Manning, Figure 2: Conceptual pipeline for building the ATLS system 2012) to detect temporal expressions in text and resolve them to an absolute date format, simplifying their use in the TLS process. However, we must keep in mind that the detection of temporal expressions, especially implicit ones, is still a challenging task. Moreover, available tools such as these were mainly conceived for contemporary data, and thus may not work as properly on historical data. The input dataset could be pre-processed further by applying NLP components such as Name Entity Recognition (NER), Topic Modelling (TM), Event Extraction (EE), Relation Extraction (RE), Keyword Extraction (KE), or Keyword Generation (KG). Such annotations could be used to index the dataset and allow the user to query documents about a specific Named Entity or topic, as in the impresso 2 or the NewsEye 3 platforms."
       },
       {
-        "span_id": "a3d25512e6418ad7",
-        "paper_id": "254823202",
-        "section_name": "C.4 Further Analysis of Saliency Metric (Cont. from §4.2)",
+        "span_id": "d60d08d44ab162a1",
+        "paper_id": "254997916",
+        "repeat": 1,
+        "fold": 2,
+        "section_name": "Network analysis",
         "true_label": "micro",
         "predicted_label": "meso",
-        "confidence": 0.998432457447052,
+        "majority_prediction": "micro",
+        "confidence": 0.9999989171601428,
         "correct": false,
-        "text": "D Prompts (Cont. from §4) WebNLG. Table 13 shows an example of direct prompting (Zhang et al., 2022) for WebNLG. In Table 15 and LogicNLG. Table 17 shows an example of direct prompting for LogicNLG."
+        "text": "Palliative trigger index = Word frequency of early integration group * Difference The size of each dot indicates the frequency of a medical term. The lines indicate at least moderate co-occurrence (correlation ≥ 0.5); the stronger the co-occurrence, the thicker the line."
       },
       {
-        "span_id": "c6d3bcbb21236230",
-        "paper_id": "254246982",
-        "section_name": "Result Analysis",
+        "span_id": "3c90903b928e0639",
+        "paper_id": "254275435",
+        "repeat": 1,
+        "fold": 1,
+        "section_name": "Methodology",
         "true_label": "micro",
-        "predicted_label": "macro",
-        "confidence": 0.9937149882316589,
+        "predicted_label": "meso",
+        "majority_prediction": "macro",
+        "confidence": 0.9999983495846547,
         "correct": false,
-        "text": "Analysis of Clustering Methods. In Table 6, we show the results of intent induction comparing models that clustering algorithms. Unlike the results in Task 1, Agglomerative clustering and BIRCH outperform the other baselines. Agglomerative clustering starts with the utterances as individual clusters and merge them if they have similar intents. Experiment cogently demonstrates that the approach exploiting MiniLM MULTIQA and Agglomerative clustering achieves state-of-the-art results among the other methods in intent induction task."
+        "text": "We define intermediate beam or partial hypothesis as the sequence of sub paths of hypotheses starting at BOS and ending before EOS. The saliency enhanced greedy rollout component, explained in Section 4.1, attends over important parts of the context relevant to the intermediate beams and completes the beam till EOS."
       }
     ]
   }

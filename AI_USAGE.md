@@ -52,7 +52,7 @@ The proposed approach was to shuffle paper IDs with a fixed seed, cap the number
 
 > The suggested 100–150-token range removes nearly all titles and many section-opening sentences. How can I control length without losing whole label categories?
 
-The response suggested choosing a token count supported by all classes, truncating retained spans to that exact length, and embedding them again. I used 24 model tokens and rebalanced the classes within the fixed paper split. This is not a perfect control because truncation removes later context, so I state that limitation in the report. I verified that all 1,223 controlled records have `model_token_count = 24`; the final controlled evaluation contains 423 training examples and 102 test examples, with 34 test examples per class
+The response suggested choosing a token count supported by all classes, truncating retained spans to that exact length, and embedding them again. I used 24 model tokens and rebalanced the classes within each paper-grouped train/test fold. This is not a perfect control because truncation removes later context, so I state that limitation in the report. I verified that all 1,223 controlled records have `model_token_count = 24`; the current repeated evaluation has 90–126 balanced test examples per fold.
 
 ## Follow-up experiment plan
 

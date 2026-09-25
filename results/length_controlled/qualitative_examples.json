@@ -2,198 +2,252 @@
   "macro": {
     "correct": [
       {
-        "span_id": "c0acc340c0741c6a",
-        "paper_id": "254854411",
+        "span_id": "63294dc66d8930dd",
+        "paper_id": "255060016",
+        "repeat": 0,
+        "fold": 2,
         "section_name": "Abstract",
         "true_label": "macro",
         "predicted_label": "macro",
-        "confidence": 0.999999916718431,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999999328228,
         "correct": true,
-        "text": "many dialogue systems ( dss ) lack characteristics humans have, such as emotion perception, factuality, and informativeness"
-      },
-      {
-        "span_id": "3ff106b74d5958f1",
-        "paper_id": "254221047",
-        "section_name": "INTRODUCTION",
-        "true_label": "macro",
-        "predicted_label": "macro",
-        "confidence": 0.9999967542094604,
-        "correct": true,
-        "text": "video sharing and streaming services have taken over the traditional media medium, as they provide vast, personalized, and on -"
+        "text": "background in order to detect threats to public health and to be well - prepared for endemic and pandemic illness outbreaks"
       },
       {
         "span_id": "e3543bf287131b5d",
         "paper_id": "254854101",
+        "repeat": 4,
+        "fold": 2,
         "section_name": "INTRODUCTION",
         "true_label": "macro",
         "predicted_label": "macro",
-        "confidence": 0.9999960836572711,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999981094858,
         "correct": true,
         "text": "in the era of rapidly evolving services, customer services are the next important technological advancement [ 1 ]. customer services are the"
+      },
+      {
+        "span_id": "c3b45424ff8bbfe5",
+        "paper_id": "254854224",
+        "repeat": 3,
+        "fold": 0,
+        "section_name": "Introduction",
+        "true_label": "macro",
+        "predicted_label": "macro",
+        "majority_prediction": "macro",
+        "confidence": 0.9999999852385921,
+        "correct": true,
+        "text": "text data mining is to derive high - quality information from unstructured data. it enables decision - makers to analyze massive"
       }
     ],
     "failed": [
       {
-        "span_id": "be8962bd17e48743",
-        "paper_id": "254587743",
-        "section_name": "Introduction",
+        "span_id": "f715b523d45284d2",
+        "paper_id": "254564436",
+        "repeat": 2,
+        "fold": 3,
+        "section_name": "INTRODUCTION",
         "true_label": "macro",
         "predicted_label": "meso",
-        "confidence": 0.9999624485999915,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999996675155,
         "correct": false,
-        "text": "bridge management is essential to ensure bridges are always in safe condition [ 5 ]. in addition to direct measures, such as"
+        "text": "translatotron [ 2, 4 ] proposes an end - to - end model with an auxiliary module to ensure the"
       },
       {
-        "span_id": "eab1caf610bbc739",
-        "paper_id": "254125095",
-        "section_name": "Introduction",
-        "true_label": "macro",
-        "predicted_label": "micro",
-        "confidence": 0.9999272969475835,
-        "correct": false,
-        "text": "for each training instance, mlm only calculates labelwise matching between the prediction and the gold tokens in the training"
-      },
-      {
-        "span_id": "ed637c62da370b8b",
-        "paper_id": "254275435",
-        "section_name": "Abstract",
+        "span_id": "847edf03e66613a8",
+        "paper_id": "254925417",
+        "repeat": 1,
+        "fold": 2,
+        "section_name": "Title",
         "true_label": "macro",
         "predicted_label": "meso",
-        "confidence": 0.9979007043064477,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999633998244,
         "correct": false,
-        "text": "advancement in large pretrained language models has significantly improved their performance for conditional language generation tasks including summarization albeit with"
+        "text": "setting and prioritizing evidence - informed policies to control childhood obesity in iran : a mixed delphi and policy dialogue approach"
+      },
+      {
+        "span_id": "836d14566d08a8bb",
+        "paper_id": "254877227",
+        "repeat": 0,
+        "fold": 3,
+        "section_name": "Conclusion",
+        "true_label": "macro",
+        "predicted_label": "meso",
+        "majority_prediction": "macro",
+        "confidence": 0.9999997142090729,
+        "correct": false,
+        "text": "in this paper, we evaluate the contribution made by individual experts on the performance of the nllb - 200 mixture - of"
       }
     ]
   },
   "meso": {
     "correct": [
       {
-        "span_id": "d978caf243bac55a",
-        "paper_id": "254587743",
-        "section_name": "Encoder",
+        "span_id": "577a79b3e915ee9e",
+        "paper_id": "254246723",
+        "repeat": 0,
+        "fold": 4,
+        "section_name": "Team Contributions",
         "true_label": "meso",
         "predicted_label": "meso",
-        "confidence": 0.9994760310457346,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999980510781,
         "correct": true,
-        "text": "the model classifies the complex questions of bridge management as input, and obtains bert embeddings, pos"
+        "text": "our team's original breakdown of work for one individual to write the paper ( imran ), one individual to manage"
       },
       {
-        "span_id": "65c5b76980405e84",
-        "paper_id": "254275267",
-        "section_name": "RETRO-fitting a baseline model",
+        "span_id": "03ed41e881060cb4",
+        "paper_id": "254877502",
+        "repeat": 4,
+        "fold": 1,
+        "section_name": "SearchQA, Wikipedia",
         "true_label": "meso",
         "predicted_label": "meso",
-        "confidence": 0.9976373624244941,
+        "majority_prediction": "macro",
+        "confidence": 0.9999995317221976,
         "correct": true,
-        "text": "although a retro - based model could be trained from scratch for abstractive summarization, extending baseline models into retro models"
+        "text": "charles henry dow was an american journalist who co - founded dow jones and company with edward jones and charles bergstresser"
       },
       {
         "span_id": "c554387c7b23a3b5",
         "paper_id": "254125095",
+        "repeat": 4,
+        "fold": 1,
         "section_name": "Main Results",
         "true_label": "meso",
         "predicted_label": "meso",
-        "confidence": 0.992539312876934,
+        "majority_prediction": "macro",
+        "confidence": 0.9999989623491263,
         "correct": true,
         "text": "we evaluate the performance of our pre - training enhancement compared with the baselines in small and base sizes on glue and squad"
       }
     ],
     "failed": [
       {
-        "span_id": "4604d48f6fcadca3",
-        "paper_id": "254366505",
-        "section_name": "Effect of Pretraining Behavior Corpora for Transfer Learning",
+        "span_id": "d5659b20411c4502",
+        "paper_id": "254974513",
+        "repeat": 2,
+        "fold": 4,
+        "section_name": "Related Work",
         "true_label": "meso",
-        "predicted_label": "micro",
-        "confidence": 0.9996765481130288,
+        "predicted_label": "macro",
+        "majority_prediction": "macro",
+        "confidence": 0.9999998601704085,
         "correct": false,
-        "text": "we perform ablation studies on the relations between pretraining corpora and using task - agnostic data as user features"
+        "text": "our work builds on several strands of research, including work on practical challenges in al, combining al with plms, and"
       },
       {
-        "span_id": "313671e62d59946d",
-        "paper_id": "233215595",
-        "section_name": "Results",
+        "span_id": "a3dff30502ebbbcb",
+        "paper_id": "254877577",
+        "repeat": 3,
+        "fold": 3,
+        "section_name": "Test Datasets",
         "true_label": "meso",
-        "predicted_label": "micro",
-        "confidence": 0.9994725147197744,
+        "predicted_label": "macro",
+        "majority_prediction": "macro",
+        "confidence": 0.9999996510059256,
         "correct": false,
-        "text": "the single - task ( stl ) results and the multi - task ( mtl ) setup results are reported in table"
+        "text": "in order to demonstrate the usefulness of our naamapadam - train dataset, we fine - tune the mbe"
       },
       {
-        "span_id": "d9c7e4bfc9118f73",
-        "paper_id": "254685691",
-        "section_name": "Summary-Oriented Vision Modeling",
+        "span_id": "fa991c7ca25da567",
+        "paper_id": "252819521",
+        "repeat": 2,
+        "fold": 4,
+        "section_name": "Data",
         "true_label": "meso",
         "predicted_label": "micro",
-        "confidence": 0.9991428666413189,
+        "majority_prediction": "macro",
+        "confidence": 0.9999995086640072,
         "correct": false,
-        "text": "we elaborately design two summary - oriented vision modeling tasks, namely vision to summary task and masked image modeling task, to"
+        "text": "in addition to the shared task dialogue datasets of ami ( 851 bridging instances across 7 documents ),"
       }
     ]
   },
   "micro": {
     "correct": [
       {
-        "span_id": "03436044f21f0066",
-        "paper_id": "255292678",
-        "section_name": "Method",
+        "span_id": "f99891cb0308d62e",
+        "paper_id": "252819521",
+        "repeat": 0,
+        "fold": 1,
+        "section_name": "Model architecture",
         "true_label": "micro",
         "predicted_label": "micro",
-        "confidence": 0.9985635769178672,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999997898708,
         "correct": true,
-        "text": "( source : processed data ) figure 3 depicts the stages of this study. data collection is a technique to gain data from"
+        "text": "to perform the resolution, coref - hoi first associates each span ( represented as an embedding ) with a"
       },
       {
-        "span_id": "c7e4f502e5ed2569",
-        "paper_id": "255096269",
-        "section_name": "Experimental Setup",
+        "span_id": "6e327ad5ca192213",
+        "paper_id": "255096260",
+        "repeat": 1,
+        "fold": 2,
+        "section_name": "Iterative Slope-Based Analysis of Residual Errors",
         "true_label": "micro",
         "predicted_label": "micro",
-        "confidence": 0.9971573232032517,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999968190303,
         "correct": true,
-        "text": "decoding. our evaluation data comprises tasks with answer candidates ( of which one is correct ), as well as tasks with"
+        "text": "ther separated according to whether the regression model underpredicted or overpredicted the target reading times. in"
       },
       {
-        "span_id": "aaf0cb547c04fcfa",
-        "paper_id": "254125095",
-        "section_name": "Analysis",
+        "span_id": "cac2e148bd21c990",
+        "paper_id": "254823167",
+        "repeat": 2,
+        "fold": 1,
+        "section_name": "Performance of decoding task prediction vs performance at predicting brain recordings",
         "true_label": "micro",
         "predicted_label": "micro",
-        "confidence": 0.993218934903364,
+        "majority_prediction": "macro",
+        "confidence": 0.999999991033851,
         "correct": true,
-        "text": "lookup table from wordnet vs. word2vec for the hard correction approach, the candidate synonyms for detecting"
+        "text": "on the other hand, tasks with much lower values in column b and higher in a ( like word length, top constituents"
       }
     ],
     "failed": [
       {
-        "span_id": "bc98668803890e2f",
-        "paper_id": "255026270",
-        "section_name": "Accuracy evaluation matrices",
+        "span_id": "58cb530c1011cd83",
+        "paper_id": "254535570",
+        "repeat": 3,
+        "fold": 0,
+        "section_name": "A. Dataset Construction",
         "true_label": "micro",
         "predicted_label": "meso",
-        "confidence": 0.999980862033909,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999918663972,
         "correct": false,
-        "text": "after calculation precision and recall, f - measure is also calculated. f - score is the widely accepted measure to verify the"
+        "text": "1 ) repository selection : first, to ensure high - quality commits, we aim to find ≈ 10k python reposi"
       },
       {
-        "span_id": "6ad747a2c63941a6",
-        "paper_id": "254125395",
-        "section_name": "Implementation Details",
+        "span_id": "861f90c1fcbb28c2",
+        "paper_id": "254926948",
+        "repeat": 4,
+        "fold": 0,
+        "section_name": "Typology Evaluation",
         "true_label": "micro",
         "predicted_label": "meso",
-        "confidence": 0.999903957974357,
+        "majority_prediction": "macro",
+        "confidence": 0.9999999605456216,
         "correct": false,
-        "text": "all models were trained using the huggingface library ( wolf et al., 2020 ) on an nvidia tesla a1"
+        "text": "niger congo our niger congo family includes bambara, chichewa, igbo, isixhosa, is"
       },
       {
-        "span_id": "1de56cfb210763da",
-        "paper_id": "254853778",
-        "section_name": "Individuation and Model Evaluation",
+        "span_id": "432a8c1fc4adbc12",
+        "paper_id": "254926857",
+        "repeat": 4,
+        "fold": 1,
+        "section_name": "Experiment Settings",
         "true_label": "micro",
-        "predicted_label": "macro",
-        "confidence": 0.999890152343831,
+        "predicted_label": "meso",
+        "majority_prediction": "macro",
+        "confidence": 0.9999999587153107,
         "correct": false,
-        "text": "thus, because systems are tasked with reproducing particular ( often idiosyncratic ) individuation decisions"
+        "text": "435898 unanswerable samples. the batch size is 32 and each batch contains an equal number of answer"
       }
     ]
   }

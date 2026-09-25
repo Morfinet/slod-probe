@@ -1,46 +1,77 @@
 {
   "condition": "in_domain",
-  "accuracy": 0.78,
-  "macro_f1": 0.7802729677729677,
+  "evaluation": "NLP paper-grouped repeated 5-fold out-of-fold",
+  "split_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "folds": 5,
+  "repeats": 5,
+  "accuracy": 0.7066666666666667,
+  "macro_f1": 0.7066840359065825,
+  "macro_f1_per_repeat": [
+    0.7306271486302647,
+    0.6851723323802452,
+    0.7122209317331268,
+    0.7134183734703753,
+    0.6919813933189
+  ],
+  "macro_f1_ci95_paper_bootstrap": [
+    0.67983280937282,
+    0.7332603004004833
+  ],
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 2026,
   "per_class": {
     "macro": {
-      "precision": 0.8163265306122449,
-      "recall": 0.8,
-      "f1": 0.8080808080808081,
-      "support": 50
+      "precision": 0.7324281150159745,
+      "recall": 0.7336,
+      "f1": 0.7330135891286971,
+      "support": 1250
     },
     "meso": {
-      "precision": 0.8043478260869565,
-      "recall": 0.74,
-      "f1": 0.7708333333333334,
-      "support": 50
+      "precision": 0.7258842443729904,
+      "recall": 0.7224,
+      "f1": 0.7241379310344828,
+      "support": 1250
     },
     "micro": {
-      "precision": 0.7272727272727273,
-      "recall": 0.8,
-      "f1": 0.7619047619047619,
-      "support": 50
+      "precision": 0.6618819776714514,
+      "recall": 0.664,
+      "f1": 0.6629392971246006,
+      "support": 1250
     }
   },
   "confusion_matrix": [
     [
-      40,
-      5,
-      5
+      917,
+      132,
+      201
     ],
     [
-      3,
-      37,
-      10
+      124,
+      903,
+      223
     ],
     [
-      6,
-      4,
-      40
+      211,
+      209,
+      830
     ]
   ],
-  "majority_macro_f1": 0.16666666666666666,
-  "train_spans": 600,
-  "test_spans": 150,
+  "majority_macro_f1": 0.29644278682659553,
+  "test_papers": 347,
+  "test_spans": 3750,
+  "unique_test_spans": 750,
+  "test_spans_per_repeat": [
+    750,
+    750,
+    750,
+    750,
+    750
+  ],
   "paper_overlap": 0
 }

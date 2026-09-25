@@ -15,6 +15,8 @@
 
 ## Priority 3 — Measure uncertainty across paper splits and samples
 
+- Completed for the fixed selected dataset: five repetitions of paper-grouped 5-fold evaluation (seeds 42–46) and 95% paper-bootstrap intervals from 2,000 resamples. See `TECHNICAL_REPORT.md` and `results/`.
+- Still pending: repeat the original span selection with different sampling seeds and regenerate embeddings.
 - Repeat evaluation across several paper-level train/test splits and span-sampling seeds.
 - Calculate confidence intervals for macro F1 and for differences between conditions.
 - Resample papers, rather than individual spans, when estimating confidence intervals.

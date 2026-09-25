@@ -1,46 +1,77 @@
 {
   "condition": "length_controlled",
-  "accuracy": 0.47058823529411764,
-  "macro_f1": 0.46945701599529244,
+  "evaluation": "NLP paper-grouped repeated 5-fold out-of-fold",
+  "split_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "folds": 5,
+  "repeats": 5,
+  "accuracy": 0.45297001002723236,
+  "macro_f1": 0.4534352287301939,
+  "macro_f1_per_repeat": [
+    0.48428348770567786,
+    0.45917757628019196,
+    0.4303248669500417,
+    0.4463151444095705,
+    0.44707506830548716
+  ],
+  "macro_f1_ci95_paper_bootstrap": [
+    0.4252257681341503,
+    0.4829343054138848
+  ],
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 2026,
   "per_class": {
     "macro": {
-      "precision": 0.6363636363636364,
-      "recall": 0.6176470588235294,
-      "f1": 0.6268656716417911,
-      "support": 34
+      "precision": 0.5343601895734598,
+      "recall": 0.5238095238095238,
+      "f1": 0.5290322580645161,
+      "support": 861
     },
     "meso": {
-      "precision": 0.3902439024390244,
-      "recall": 0.47058823529411764,
-      "f1": 0.4266666666666667,
-      "support": 34
+      "precision": 0.375,
+      "recall": 0.3867595818815331,
+      "f1": 0.38078902229845624,
+      "support": 861
     },
     "micro": {
-      "precision": 0.39285714285714285,
-      "recall": 0.3235294117647059,
-      "f1": 0.3548387096774194,
-      "support": 34
+      "precision": 0.4535840188014101,
+      "recall": 0.44831591173054586,
+      "f1": 0.45093457943925236,
+      "support": 861
     }
   },
   "confusion_matrix": [
     [
-      21,
-      7,
-      6
+      451,
+      227,
+      183
     ],
     [
-      7,
-      16,
-      11
+      246,
+      333,
+      282
     ],
     [
-      5,
-      18,
-      11
+      147,
+      328,
+      386
     ]
   ],
   "majority_macro_f1": 0.16666666666666666,
-  "train_spans": 423,
-  "test_spans": 102,
+  "test_papers": 329,
+  "test_spans": 2583,
+  "unique_test_spans": 615,
+  "test_spans_per_repeat": [
+    516,
+    525,
+    522,
+    513,
+    507
+  ],
   "paper_overlap": 0
 }
