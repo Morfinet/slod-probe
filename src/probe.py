@@ -60,16 +60,28 @@ def save_confusion(matrix, output, title):
 def pick_examples(rows):
     examples = {}
     for label in LABELS:
-        correct = sorted(
+        correct_candidates = sorted(
             [row for row in rows if row["true_label"] == label and row["correct"]],
             key=lambda row: row["confidence"],
             reverse=True,
-        )[:3]
-        failed = sorted(
+        )
+        failed_candidates = sorted(
             [row for row in rows if row["true_label"] == label and not row["correct"]],
             key=lambda row: row["confidence"],
             reverse=True,
-        )[:3]
+        )
+        def unique_examples(candidates):
+            selected = []
+            seen = set()
+            for row in candidates:
+                if row["span_id"] not in seen:
+                    selected.append(row)
+                    seen.add(row["span_id"])
+                if len(selected) == 3:
+                    break
+            return selected
+        correct = unique_examples(correct_candidates)
+        failed = unique_examples(failed_candidates)
         examples[label] = {"correct": correct, "failed": failed}
     return examples
 
@@ -191,13 +203,15 @@ def main():
     )
     args = parser.parse_args()
 
-    conditions = (
-        ("in_domain", "cross_domain", "length_controlled")
-        if args.condition == "all"
-        else (args.condition,)
-    )
-    for condition in conditions:
-        print(json.dumps(run(condition), indent=2))
+    if args.condition == "cross_domain":
+        run("cross_domain")
+        from cross_validate import update_cross_domain_interval
+        print(json.dumps(update_cross_domain_interval(), indent=2))
+    else:
+        from cross_validate import run as run_cross_validation
+        results = run_cross_validation()
+        selected = results if args.condition == "all" else {args.condition: results[args.condition]}
+        print(json.dumps(selected, indent=2))
 
 
 if __name__ == "__main__":
