@@ -57,3 +57,13 @@ python src/probe.py --condition all
 I used `sentence-transformers/all-MiniLM-L6-v2`. Its parameters are frozen and only the cached 384-dimensional embeddings are passed to logistic regression. Train/test splitting is done by `paper_id`, not by individual span. Run `python src/cross_validate.py` to regenerate all reported results in one command.
 
 The main report includes length-distribution plots exported from `test_length.ipynb`.
+
+## Metrics within classes by source type
+
+To print the Markdown table in `TECHNICAL_REPORT.md` from the saved in-domain held-out predictions, run:
+
+```bash
+python src/cross_validate.py --source-types
+```
+
+The command joins `results/in_domain/predictions.csv` to `data/spans/spans.jsonl` by `span_id`. It reports papers, unique spans, recall (within-type accuracy), a 95% paper-bootstrap interval, and counts predicted as macro, meso and micro for each true class and `source_kind`. Regenerate the predictions first with `python src/probe.py --condition in_domain` if the span dataset or embeddings have changed.

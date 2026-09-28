@@ -379,6 +379,77 @@ def run_model_size_comparison():
     }
 
 
+def source_type_metrics():
+    """Break down held-out in-domain predictions by true class and source type."""
+    records = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
+    nlp_rows = {row["span_id"]: row for row in records if row["domain"] == "nlp"}
+    with (ROOT / "results" / "in_domain" / "predictions.csv").open(encoding="utf-8", newline="") as f:
+        predictions = list(csv.DictReader(f))
+    seen = Counter()
+    groups = {}
+    for prediction in predictions:
+        span_id = prediction["span_id"]
+        if span_id not in nlp_rows:
+            raise ValueError(f"Unknown NLP span in predictions: {span_id}")
+        record = nlp_rows[span_id]
+        if prediction["paper_id"] != record["paper_id"] or prediction["true_label"] != record["label"]:
+            raise ValueError(f"Prediction metadata does not match span {span_id}")
+        if prediction["predicted_label"] not in LABELS:
+            raise ValueError(f"Unknown predicted label for span {span_id}")
+        repeat = int(prediction["repeat"])
+        if not 0 <= repeat < N_REPEATS:
+            raise ValueError(f"Unknown repeat for span {span_id}")
+        seen[repeat, span_id] += 1
+        groups.setdefault((record["label"], record["source_kind"]), []).append(prediction)
+    if set(seen) != {(repeat, span_id) for repeat in range(N_REPEATS) for span_id in nlp_rows} or any(
+        count != 1 for count in seen.values()
+    ):
+        raise ValueError("Every NLP span must have one held-out prediction per repeat")
+
+    output = []
+    for label, source_kind in sorted(groups, key=lambda key: (LABELS.index(key[0]), key[1])):
+        group = groups[label, source_kind]
+        by_paper = {}
+        for row in group:
+            paper = row["paper_id"]
+            counts = by_paper.setdefault(paper, [0, 0])
+            counts[0] += row["predicted_label"] == label
+            counts[1] += 1
+        values = np.asarray(list(by_paper.values()), dtype=np.int32)
+        rng = np.random.default_rng(BOOTSTRAP_SEED)
+        draws = rng.integers(len(values), size=(BOOTSTRAP_SAMPLES, len(values)))
+        sampled = values[draws].sum(axis=1)
+        interval = np.quantile(sampled[:, 0] / sampled[:, 1], [0.025, 0.975])
+        predicted_counts = Counter(row["predicted_label"] for row in group)
+        output.append({
+            "class": label,
+            "source_type": source_kind,
+            "papers": len(by_paper),
+            "unique_spans": len(group) // N_REPEATS,
+            "held_out_predictions": len(group),
+            "recall": sum(row["predicted_label"] == label for row in group) / len(group),
+            "recall_ci95_paper_bootstrap": interval.tolist(),
+            "predicted_counts": {name: predicted_counts[name] for name in LABELS},
+        })
+    return output
+
+
+def source_type_markdown(rows):
+    lines = [
+        "| Class | Source type | Papers | Spans | Recall | 95% paper-bootstrap CI | Predicted macro / meso / micro |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in rows:
+        counts = row["predicted_counts"]
+        low, high = row["recall_ci95_paper_bootstrap"]
+        lines.append(
+            f'| {row["class"]} | {row["source_type"]} | {row["papers"]} | {row["unique_spans"]} | '
+            f'{row["recall"]:.3f} | {low:.3f}-{high:.3f} | '
+            f'{counts["macro"]} / {counts["meso"]} / {counts["micro"]} |'
+        )
+    return "\n".join(lines)
+
+
 def run():
     full_rows = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
     full_embeddings = load_embeddings(ROOT / "embeddings" / "full_embeddings", full_rows)
@@ -399,11 +470,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--baselines", action="store_true", help="Compare length, surface counts and TF-IDF")
     parser.add_argument("--model-sizes", action="store_true", help="Compare encoders and PCA dimensions")
+    parser.add_argument("--source-types", action="store_true", help="Show in-domain metrics by class and source type")
     args = parser.parse_args()
-    if args.baselines and args.model_sizes:
+    if sum((args.baselines, args.model_sizes, args.source_types)) > 1:
         parser.error("Choose one comparison at a time")
-    results = run_model_size_comparison() if args.model_sizes else run_baselines() if args.baselines else {"conditions": run()}
-    print(json.dumps(results, indent=2))
+    if args.source_types:
+        print(source_type_markdown(source_type_metrics()))
+    else:
+        results = run_model_size_comparison() if args.model_sizes else run_baselines() if args.baselines else {"conditions": run()}
+        print(json.dumps(results, indent=2))
 
 
 if __name__ == "__main__":

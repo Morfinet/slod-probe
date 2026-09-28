@@ -32,6 +32,21 @@ I pooled the five held-out folds within each repetition, computed macro F1, and 
 
 The in-domain score exceeds its majority baseline but remains modest. Transfer to CV is weaker, particularly for `meso` recall (0.316). In the in-domain confusion matrix, 517 of 1,250 held-out true `meso` predictions are classified as `micro`; 482 of 1,250 true `micro` predictions are classified as `meso`. The full paragraphs frequently contain procedural details, making the section-level structural label hard to distinguish from method and result details.
 
+### In-domain results within classes by source type
+
+The table breaks down the saved MiniLM-L6 in-domain held-out predictions by the true class and the span's structural `source_kind`. Each source type has only one true weak label, so its **recall is also its within-type accuracy**; precision and F1 for a single-source subset would be misleading. The last column counts predictions across the five repetitions in `macro / meso / micro` order. Each unique span appears five times. Intervals are 95% paper-bootstrap intervals from 2,000 resamples within each row, conditional on the saved fitted probes and splits.
+
+| Class | Source type | Papers | Spans | Recall | 95% paper-bootstrap CI | Predicted macro / meso / micro |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| macro | abstract | 50 | 50 | 0.852 | 0.772–0.920 | 213 / 22 / 15 |
+| macro | conclusion | 58 | 58 | 0.562 | 0.455–0.672 | 163 / 84 / 43 |
+| macro | introduction | 81 | 81 | 0.570 | 0.477–0.657 | 231 / 108 / 66 |
+| macro | title | 61 | 61 | 0.780 | 0.695–0.856 | 238 / 34 / 33 |
+| meso | section_lead | 250 | 250 | 0.402 | 0.354–0.450 | 231 / 502 / 517 |
+| micro | detail | 250 | 250 | 0.479 | 0.433–0.525 | 169 / 482 / 599 |
+
+Among `macro` source types, abstract recall is highest (0.852), while introduction and conclusion recall are around 0.57. The `meso` and `micro` rows confirm that their mutual confusion is substantial. Reproduce this table with `python src/cross_validate.py --source-types`.
+
 ### Simple baselines on the NLP folds
 
 | Model | Accuracy | Macro F1 | 95% paper-bootstrap interval | Difference from embedding probe (95% interval) | Macro / meso / micro F1 |
