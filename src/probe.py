@@ -13,7 +13,6 @@ from sklearn.model_selection import StratifiedGroupKFold
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-from controls import balanced_indices
 from utils import LABELS, ROOT, SEED, read_jsonl, set_seed, write_json
 
 
@@ -166,9 +165,6 @@ def run(condition):
     full_rows = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
     full_embeddings = load_embeddings(ROOT / "embeddings" / "full_embeddings", full_rows)
     full_train, full_test = nlp_split(full_rows)
-    train_papers = {full_rows[i]["paper_id"] for i in full_train}
-    test_papers = {full_rows[i]["paper_id"] for i in full_test}
-
     if condition == "in_domain":
         return evaluate(condition, full_rows, full_embeddings, full_train, full_test)
 
@@ -177,19 +173,7 @@ def run(condition):
         test = np.array([i for i, row in enumerate(full_rows) if row["domain"] == "cv"])
         return evaluate(condition, full_rows, full_embeddings, train, test)
 
-    rows = read_jsonl(ROOT / "data" / "spans" / "controlled_spans.jsonl")
-    embeddings = load_embeddings(ROOT / "embeddings" / "controlled_embeddings", rows)
-    train_pool = [
-        i for i, row in enumerate(rows) if row["domain"] == "nlp" and row["paper_id"] in train_papers
-    ]
-    test_pool = [
-        i for i, row in enumerate(rows) if row["domain"] == "nlp" and row["paper_id"] in test_papers
-    ]
-    train_local = balanced_indices([rows[i]["label"] for i in train_pool], SEED)
-    test_local = balanced_indices([rows[i]["label"] for i in test_pool], SEED + 1)
-    train = np.array([train_pool[i] for i in train_local])
-    test = np.array([test_pool[i] for i in test_local])
-    return evaluate(condition, rows, embeddings, train, test)
+    raise ValueError(f"Unknown condition: {condition}")
 
 
 def main():
@@ -198,7 +182,7 @@ def main():
     parser.add_argument("--eval", action="store_true")
     parser.add_argument(
         "--condition",
-        choices=("in_domain", "cross_domain", "length_controlled", "all"),
+        choices=("in_domain", "cross_domain", "all"),
         default="all",
     )
     args = parser.parse_args()

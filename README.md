@@ -28,16 +28,17 @@ The repository already contains the selected spans and cached embeddings. The co
 python src/probe.py --train --eval --condition in_domain
 ```
 
-The other conditions are:
+The cross-domain condition is:
 
 ```bash
 python src/probe.py --train --eval --condition cross_domain
-python src/probe.py --train --eval --condition length_controlled
 ```
 
-The in-domain and length-controlled commands run five repetitions of paper-grouped 5-fold cross-validation (split seeds 42–46). Each repetition tests every NLP paper once. The controlled condition keeps the existing per-split class balancing rule. The reported macro F1 is the mean of the five out-of-fold macro F1 scores, not the mean of 25 individual fold scores. A 95% percentile interval is calculated from 2,000 bootstrap resamples of whole papers (seed 2026), using the same sampled papers across the five repetitions. This interval is conditional on the selected spans, fitted models and five split assignments; it does not cover a new draw of papers or spans from the source corpus.
+The in-domain command runs five repetitions of paper-grouped 5-fold cross-validation (split seeds 42–46). Each repetition tests every NLP paper once. The reported macro F1 is the mean of the five out-of-fold macro F1 scores, not the mean of 25 individual fold scores. A 95% percentile interval is calculated from 2,000 bootstrap resamples of whole papers (seed 2026), using the same sampled papers across the five repetitions. This interval is conditional on the selected spans, fitted models and five split assignments; it does not cover a new draw of papers or spans from the source corpus.
 
-Each command writes `metrics.json`, a confusion matrix, predictions and qualitative examples to `results/<condition>/`. The two cross-validated conditions also write `fold_metrics.json`; `results/paper_folds.json` records every train/test paper assignment. Confusion matrices and per-class counts pool predictions from all five repetitions, so each full-text span appears five times. The cross-domain condition remains a single NLP-to-CV train/test experiment, with a paper-bootstrap interval on the CV test papers.
+Each command writes `metrics.json`, a confusion matrix, predictions and qualitative examples to `results/<condition>/`. The in-domain condition also writes `fold_metrics.json`; `results/paper_folds.json` records every train/test paper assignment. Confusion matrices and per-class counts pool predictions from all five repetitions, so each full-text span appears five times. The cross-domain condition remains a single NLP-to-CV train/test experiment, with a paper-bootstrap interval on the CV test papers.
+
+To reproduce the length, surface-count and TF-IDF baselines on the same NLP paper folds, run `python src/cross_validate.py --baselines`. It prints their metrics and paired paper-bootstrap differences from the saved embedding-probe predictions. The comparison is summarized in `TECHNICAL_REPORT.md`.
 
 ## Rebuilding the data
 
@@ -45,12 +46,12 @@ The source is one validation shard of `allenai/peS2o`, which is derived from S2O
 
 ```bash
 python src/dataset.py --download
-python src/embed.py --condition both
+python src/embed.py
 python src/probe.py --condition all
 ```
 
-`dataset.py` scans the shard, assigns a domain using title keywords, creates structural labels with full opening paragraphs for `meso`, and samples up to 250 spans for every domain/class combination. The **saved evaluation cohort** contains 1,497 spans from 589 papers: 500 macro, 497 meso and 500 micro. Three uncertain paragraph mappings were excluded when this cohort was assembled. A fresh raw-data rebuild may select a different 1,500-span cohort; the reported numbers are reproducible from the saved `data/spans/spans.jsonl` and embedding cache.
+`dataset.py` scans the shard, assigns a domain using title keywords, creates structural labels with full opening paragraphs for `meso`, and samples up to 250 spans for every domain/class combination. The **saved evaluation cohort** contains 1,500 spans from 591 papers: 500 each of macro, meso and micro. The reported numbers are reproducible from the saved `data/spans/spans.jsonl` and embedding cache.
 
 I used `sentence-transformers/all-MiniLM-L6-v2`. Its parameters are frozen and only the cached 384-dimensional embeddings are passed to logistic regression. Train/test splitting is done by `paper_id`, not by individual span. Run `python src/cross_validate.py` to regenerate all reported results in one command.
 
-For the length control, every retained span is cut to exactly 24 model tokens and embedded again. I used 24 rather than 100-150 tokens because titles and some section leads are shorter than 100 tokens. A larger lower bound would remove many examples and would change the dataset at the same time as controlling length. The main report includes the length-distribution plots exported from `test_length.ipynb`.
+The main report includes length-distribution plots exported from `test_length.ipynb`.

@@ -36,11 +36,11 @@ A small manually annotated sample would be the best way to estimate label qualit
 
 The literature suggests a deliberately limited claim. I can test whether structural SLoD labels are linearly decodable from frozen embeddings, but not whether SLoD is a causal internal variable of the encoder.
 
-The experiment therefore uses a frozen MiniLM model and logistic regression. Papers, not spans, are the unit of the train/test split. Cross-domain evaluation checks whether a probe trained on NLP papers transfers to computer vision. The length-controlled condition re-embeds spans after cutting them to the same number of model tokens. If performance drops strongly, part of the original result was caused by length.
+The experiment therefore uses a frozen MiniLM model and logistic regression. Papers, not spans, are the unit of the train/test split. Cross-domain evaluation checks whether a probe trained on NLP papers transfers to computer vision. Length, digit and citation counts, along with TF-IDF, provide baselines for judging how much the embedding probe adds beyond simpler text features.
 
 Length is not the only possible confound. Other likely signals are numerals, citations, tense, discourse phrases, formulas and section-specific vocabulary. Domain selection based on title words may also create a bias. Another problem is the `meso` class: the first sentence of a section can be either a short transition or a detailed description of an algorithm. This makes the class less clearly defined than macro or micro.
 
-If the controlled probe stays above the baseline, it may still be useful as one feature in a retrieval system. For example, a RAG pipeline could request both overview and detailed passages. It should not use the predicted class as a hard filter until the probe has been tested on human labels and additional domains.
+If the probe proves useful beyond the baselines on human-rated data, it may serve as one feature in a retrieval system. For example, a RAG pipeline could request both overview and detailed passages. It should not use the predicted class as a hard filter until the probe has been tested on human labels and additional domains.
 
 ## References
 

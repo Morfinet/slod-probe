@@ -7,8 +7,7 @@ from pathlib import Path
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-from controls import CONTROL_TOKENS, make_length_controlled
-from utils import ROOT, read_jsonl, write_json, write_jsonl
+from utils import ROOT, read_jsonl, write_json
 
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -56,7 +55,6 @@ def save_embeddings(model, records, prefix, model_name, batch_size):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--spans", type=Path, default=ROOT / "data" / "spans" / "spans.jsonl")
-    parser.add_argument("--condition", choices=("full", "controlled", "both"), default="both")
     parser.add_argument("--model", default=MODEL_NAME)
     parser.add_argument("--batch-size", type=int, default=32)
     args = parser.parse_args()
@@ -64,19 +62,7 @@ def main():
     records = read_jsonl(args.spans)
     model = load_model(args.model)
 
-    if args.condition in ("full", "both"):
-        save_embeddings(model, records, ROOT / "embeddings" / "full_embeddings", args.model, args.batch_size)
-
-    if args.condition in ("controlled", "both"):
-        controlled = make_length_controlled(records, model.tokenizer, CONTROL_TOKENS)
-        write_jsonl(args.spans.with_name("controlled_spans.jsonl"), controlled)
-        save_embeddings(
-            model,
-            controlled,
-            ROOT / "embeddings" / "controlled_embeddings",
-            args.model,
-            args.batch_size,
-        )
+    save_embeddings(model, records, ROOT / "embeddings" / "full_embeddings", args.model, args.batch_size)
 
 
 if __name__ == "__main__":

@@ -2,29 +2,7 @@ from collections import defaultdict
 
 import numpy as np
 
-from utils import LABELS, make_id
-
-
-CONTROL_TOKENS = 24
-
-
-def make_length_controlled(records, tokenizer, target=CONTROL_TOKENS):
-    """Truncate every retained span to the same number of model tokens."""
-    result = []
-    for record in records:
-        ids = tokenizer.encode(record["text"], add_special_tokens=False, truncation=False)
-        if len(ids) < target:
-            continue
-
-        row = dict(record)
-        row["original_span_id"] = record["span_id"]
-        row["span_id"] = make_id(record["span_id"], "length_controlled", str(target))
-        row["text"] = tokenizer.decode(ids[:target], skip_special_tokens=True).strip()
-        row["original_token_count"] = record["token_count"]
-        row["token_count"] = target
-        row["model_token_count"] = target
-        result.append(row)
-    return result
+from utils import LABELS
 
 
 def balanced_indices(labels, seed):

@@ -1,14 +1,19 @@
-"""Paper-grouped cross-validation and paper bootstrap confidence intervals."""
+"""Paper-grouped cross-validation, baselines and paper bootstrap intervals."""
 
+import argparse
 import csv
 import json
+import re
 from collections import Counter
 
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.model_selection import StratifiedGroupKFold
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
-from controls import balanced_indices
 from probe import load_embeddings, make_model, pick_examples, run as run_original, save_confusion
 from utils import LABELS, ROOT, SEED, read_jsonl, write_json
 
@@ -17,6 +22,7 @@ N_FOLDS = 5
 N_REPEATS = 5
 BOOTSTRAP_SAMPLES = 2000
 BOOTSTRAP_SEED = 2026
+CITATION = re.compile(r"\[(?:\d+[\s,;\-–]*)+\]|\([^)]*\b(?:19|20)\d{2}[a-z]?\b[^)]*\)")
 
 
 def grouped_folds(records):
@@ -83,16 +89,13 @@ def bootstrap(rows, sampled_papers=None):
     return scores, sampled_papers
 
 
-def evaluate(condition, records, embeddings, folds, controlled=False):
+def evaluate(condition, records, embeddings, folds):
     predictions = []
     fold_metrics = []
     tested = []
     for repeat, fold, train_papers, test_papers in folds:
         train_idx = indices_for_papers(records, train_papers)
         test_idx = indices_for_papers(records, test_papers)
-        if controlled:
-            train_idx = train_idx[balanced_indices([records[i]["label"] for i in train_idx], SEED)]
-            test_idx = test_idx[balanced_indices([records[i]["label"] for i in test_idx], SEED + 1)]
         if not len(train_idx) or not len(test_idx):
             raise ValueError(f"Empty train or test in fold {fold}")
         y_train = [records[i]["label"] for i in train_idx]
@@ -128,12 +131,11 @@ def evaluate(condition, records, embeddings, folds, controlled=False):
                 "text": row["text"],
             })
             tested.append(i)
-    if not controlled:
-        expected = {i for i, row in enumerate(records) if row["domain"] == "nlp"}
-        for repeat in range(N_REPEATS):
-            repeat_tested = [i for i, row in zip(tested, predictions) if row["repeat"] == repeat]
-            if len(repeat_tested) != len(set(repeat_tested)) or set(repeat_tested) != expected:
-                raise ValueError("Each NLP span must be tested once per repeat")
+    expected = {i for i, row in enumerate(records) if row["domain"] == "nlp"}
+    for repeat in range(N_REPEATS):
+        repeat_tested = [i for i, row in zip(tested, predictions) if row["repeat"] == repeat]
+        if len(repeat_tested) != len(set(repeat_tested)) or set(repeat_tested) != expected:
+            raise ValueError("Each NLP span must be tested once per repeat")
 
     output = ROOT / "results" / condition
     output.mkdir(parents=True, exist_ok=True)
@@ -216,11 +218,85 @@ def update_cross_domain_interval():
     return metrics
 
 
+def baseline_features(records, condition):
+    """Counts are computed from the saved span text, before any fitting."""
+    features = []
+    for row in records:
+        span = row["text"]
+        counts = [len(span.split())]
+        if condition == "surface":
+            counts.extend((sum(char.isdigit() for char in span), len(CITATION.findall(span))))
+        features.append(np.log1p(counts))
+    return np.asarray(features)
+
+
+def baseline_model(condition):
+    if condition == "tfidf":
+        return make_pipeline(
+            TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True),
+            LogisticRegression(C=1.0, max_iter=5000, random_state=SEED),
+        )
+    return make_pipeline(StandardScaler(), LogisticRegression(C=1.0, max_iter=5000, random_state=SEED))
+
+
+def run_baselines():
+    """Evaluate all simple baselines on the same saved NLP spans and grouped folds."""
+    records = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
+    folds = grouped_folds(records)
+    with (ROOT / "results" / "in_domain" / "predictions.csv").open(encoding="utf-8", newline="") as f:
+        embedding_rows = list(csv.DictReader(f))
+    expected_keys = {(repeat, fold, records[i]["span_id"])
+                     for repeat, fold, _, test_papers in folds
+                     for i in indices_for_papers(records, test_papers)}
+    embedding_keys = {(int(row["repeat"]), int(row["fold"]), row["span_id"]) for row in embedding_rows}
+    if embedding_keys != expected_keys or len(embedding_rows) != len(expected_keys):
+        raise ValueError("Saved embedding predictions do not match the current spans and folds")
+    embedding_rows = [{**row, "repeat": int(row["repeat"])} for row in embedding_rows]
+    embedding_score = repeat_score(embedding_rows)[0]
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    papers = np.array(sorted({row["paper_id"] for row in embedding_rows}))
+    sampled_papers = rng.choice(papers, size=(BOOTSTRAP_SAMPLES, len(papers)), replace=True)
+    embedding_bootstrap, _ = bootstrap(embedding_rows, sampled_papers)
+
+    results = {}
+    for condition in ("length", "surface", "tfidf"):
+        values = [row["text"] for row in records] if condition == "tfidf" else baseline_features(records, condition)
+        predictions = []
+        for repeat, fold, train_papers, test_papers in folds:
+            train_idx = indices_for_papers(records, train_papers)
+            test_idx = indices_for_papers(records, test_papers)
+            model = baseline_model(condition)
+            model.fit([values[i] for i in train_idx], [records[i]["label"] for i in train_idx])
+            predicted = model.predict([values[i] for i in test_idx])
+            predictions.extend({
+                "repeat": repeat, "fold": fold, "span_id": records[i]["span_id"],
+                "paper_id": records[i]["paper_id"], "true_label": records[i]["label"],
+                "predicted_label": str(label),
+            } for i, label in zip(test_idx, predicted))
+        score, per_repeat = repeat_score(predictions)
+        samples, _ = bootstrap(predictions, sampled_papers)
+        truth = [row["true_label"] for row in predictions]
+        predicted = [row["predicted_label"] for row in predictions]
+        report = classification_report(truth, predicted, labels=LABELS, output_dict=True, zero_division=0)
+        results[condition] = {
+            "accuracy": float(accuracy_score(truth, predicted)),
+            "macro_f1": score,
+            "macro_f1_per_repeat": per_repeat,
+            "macro_f1_ci95_paper_bootstrap": np.quantile(samples, [0.025, 0.975]).tolist(),
+            "delta_vs_embedding_macro_f1": score - embedding_score,
+            "delta_vs_embedding_ci95_paper_bootstrap": np.quantile(samples - embedding_bootstrap, [0.025, 0.975]).tolist(),
+            "per_class_f1": {label: report[label]["f1-score"] for label in LABELS},
+            "confusion_matrix": confusion_matrix(truth, predicted, labels=LABELS).tolist(),
+            "test_papers": len(papers), "unique_test_spans": len({row["span_id"] for row in predictions}),
+        }
+    return {"evaluation": "NLP paper-grouped repeated 5-fold; seeds 42-46",
+            "bootstrap_replicates": BOOTSTRAP_SAMPLES, "embedding_macro_f1": embedding_score,
+            "baselines": results}
+
+
 def run():
     full_rows = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
-    controlled_rows = read_jsonl(ROOT / "data" / "spans" / "controlled_spans.jsonl")
     full_embeddings = load_embeddings(ROOT / "embeddings" / "full_embeddings", full_rows)
-    controlled_embeddings = load_embeddings(ROOT / "embeddings" / "controlled_embeddings", controlled_rows)
     folds = grouped_folds(full_rows)
     write_json(ROOT / "results" / "paper_folds.json", [
         {"repeat": repeat, "split_seed": SEED + repeat, "fold": fold,
@@ -229,16 +305,16 @@ def run():
     ])
     results = {}
     results["in_domain"], _ = evaluate("in_domain", full_rows, full_embeddings, folds)
-    results["length_controlled"], _ = evaluate(
-        "length_controlled", controlled_rows, controlled_embeddings, folds, controlled=True
-    )
     run_original("cross_domain")
     results["cross_domain"] = update_cross_domain_interval()
     return results
 
 
 def main():
-    print(json.dumps({"conditions": run()}, indent=2))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--baselines", action="store_true", help="Compare length, surface counts and TF-IDF")
+    args = parser.parse_args()
+    print(json.dumps(run_baselines() if args.baselines else {"conditions": run()}, indent=2))
 
 
 if __name__ == "__main__":
