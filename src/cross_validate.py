@@ -13,6 +13,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.model_selection import StratifiedGroupKFold
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
 from probe import load_embeddings, make_model, pick_examples, run as run_original, save_confusion
 from utils import LABELS, ROOT, SEED, read_jsonl, write_json
@@ -23,6 +24,12 @@ N_REPEATS = 5
 BOOTSTRAP_SAMPLES = 2000
 BOOTSTRAP_SEED = 2026
 CITATION = re.compile(r"\[(?:\d+[\s,;\-–]*)+\]|\([^)]*\b(?:19|20)\d{2}[a-z]?\b[^)]*\)")
+ENCODERS = (
+    "sentence-transformers/all-MiniLM-L6-v2",
+    "sentence-transformers/all-MiniLM-L12-v2",
+    "sentence-transformers/all-mpnet-base-v2",
+)
+REDUCED_DIMS = (16, 32, 64, 128)
 
 
 def grouped_folds(records):
@@ -294,6 +301,84 @@ def run_baselines():
             "baselines": results}
 
 
+def run_model_size_comparison():
+    """Compare frozen encoders and train-fold PCA sizes on the same NLP spans."""
+    from sentence_transformers import SentenceTransformer
+
+    records = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
+    folds = grouped_folds(records)
+    nlp_idx = np.array([i for i, row in enumerate(records) if row["domain"] == "nlp"])
+    papers = np.array(sorted({records[i]["paper_id"] for i in nlp_idx}))
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    sampled_papers = rng.choice(papers, size=(BOOTSTRAP_SAMPLES, len(papers)), replace=True)
+    comparisons = []
+    for model_name in ENCODERS:
+        if model_name == ENCODERS[0]:
+            metadata = json.loads((ROOT / "embeddings" / "full_embeddings.json").read_text(encoding="utf-8"))
+            if metadata["model"] != model_name:
+                raise ValueError("Cached embeddings were made with another encoder")
+            embeddings = load_embeddings(ROOT / "embeddings" / "full_embeddings", records)
+        else:
+            model = SentenceTransformer(model_name)
+            model.max_seq_length = 256
+            model.eval()
+            for parameter in model.parameters():
+                parameter.requires_grad_(False)
+            embeddings = np.empty((len(records), model.get_embedding_dimension()), dtype=np.float32)
+            embeddings[nlp_idx] = model.encode(
+                [records[i]["text"] for i in nlp_idx], batch_size=32,
+                convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=False,
+            ).astype(np.float32)
+            del model
+        predictions = {dimension: [] for dimension in (*REDUCED_DIMS, embeddings.shape[1])}
+        for repeat, fold, train_papers, test_papers in folds:
+            train_idx = indices_for_papers(records, train_papers)
+            test_idx = indices_for_papers(records, test_papers)
+            train_vectors = embeddings[train_idx]
+            test_vectors = embeddings[test_idx]
+            pca = PCA(n_components=max(REDUCED_DIMS), svd_solver="randomized", random_state=SEED)
+            reduced_train = pca.fit_transform(train_vectors)
+            reduced_test = pca.transform(test_vectors)
+            y_train = [records[i]["label"] for i in train_idx]
+            for dimension in predictions:
+                if dimension == embeddings.shape[1]:
+                    x_train, x_test = train_vectors, test_vectors
+                else:
+                    x_train, x_test = reduced_train[:, :dimension], reduced_test[:, :dimension]
+                probe = make_model()
+                probe.fit(x_train, y_train)
+                predicted = probe.predict(x_test)
+                predictions[dimension].extend({
+                    "repeat": repeat, "fold": fold, "span_id": records[i]["span_id"],
+                    "paper_id": records[i]["paper_id"], "true_label": records[i]["label"],
+                    "predicted_label": str(label),
+                } for i, label in zip(test_idx, predicted))
+        for dimension, rows in predictions.items():
+            score, per_repeat = repeat_score(rows)
+            samples, _ = bootstrap(rows, sampled_papers)
+            comparisons.append({
+                "model": model_name,
+                "embedding_size": dimension,
+                "reduction": "native" if dimension == embeddings.shape[1] else "PCA fit on training fold",
+                "macro_f1": score,
+                "macro_f1_per_repeat": per_repeat,
+                "macro_f1_ci95_paper_bootstrap": np.quantile(samples, [0.025, 0.975]).tolist(),
+                "accuracy": float(accuracy_score(
+                    [row["true_label"] for row in rows],
+                    [row["predicted_label"] for row in rows],
+                )),
+                "test_papers": len(papers), "unique_test_spans": len({row["span_id"] for row in rows}),
+            })
+    baselines = run_baselines()["baselines"]
+    return {
+        "evaluation": "NLP paper-grouped repeated 5-fold; seeds 42-46",
+        "encoder_max_tokens": 256, "probe_C": 1.0, "bootstrap_replicates": BOOTSTRAP_SAMPLES,
+        "reduced_dimensions": list(REDUCED_DIMS),
+        "baselines": {name: baselines[name]["macro_f1"] for name in ("length", "tfidf")},
+        "models": comparisons,
+    }
+
+
 def run():
     full_rows = read_jsonl(ROOT / "data" / "spans" / "spans.jsonl")
     full_embeddings = load_embeddings(ROOT / "embeddings" / "full_embeddings", full_rows)
@@ -313,8 +398,12 @@ def run():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--baselines", action="store_true", help="Compare length, surface counts and TF-IDF")
+    parser.add_argument("--model-sizes", action="store_true", help="Compare encoders and PCA dimensions")
     args = parser.parse_args()
-    print(json.dumps(run_baselines() if args.baselines else {"conditions": run()}, indent=2))
+    if args.baselines and args.model_sizes:
+        parser.error("Choose one comparison at a time")
+    results = run_model_size_comparison() if args.model_sizes else run_baselines() if args.baselines else {"conditions": run()}
+    print(json.dumps(results, indent=2))
 
 
 if __name__ == "__main__":

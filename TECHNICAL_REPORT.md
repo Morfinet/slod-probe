@@ -43,6 +43,18 @@ The in-domain score exceeds its majority baseline but remains modest. Transfer t
 
 Each row uses 348 NLP papers and 750 unique held-out spans, tested once in each of five repetitions. The count-only model is near the majority baseline (macro F1 0.305). Adding digits and citation markers improves it, but remains below the embedding probe. TF-IDF exceeds the embedding probe by 0.068 macro F1 on these fixed splits. The MiniLM encoder truncates inputs at 256 model tokens while TF-IDF uses the full saved text, so this comparison does not isolate representation quality at a matched input length. These features can also reflect structural source and topic vocabulary; the comparison does not establish that any model recognizes semantic abstraction independently of those cues. Reproduce the comparison with `python src/cross_validate.py --baselines`.
 
+### Encoder and embedding-size comparison
+
+I compared frozen [MiniLM-L6](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), [MiniLM-L12](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2), and [MPNet](https://huggingface.co/sentence-transformers/all-mpnet-base-v2). Each encoder saw the same 750 NLP spans, capped at 256 model tokens, and used the same paper-grouped 5×5 folds and `C=1` logistic probe. Native embeddings have 384, 384 and 768 dimensions respectively. For 16, 32, 64 and 128 dimensions, PCA was fitted on each training fold and then applied to its test fold. The existing MiniLM-L6 cache was checked against the selected encoder and span IDs; new model embeddings were computed without adding cache files to the repository.
+
+| Encoder | 16 | 32 | 64 | 128 | Native |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| MiniLM-L6 | 0.548 | 0.569 | **0.571** | 0.564 | 0.519 (384) |
+| MiniLM-L12 | 0.531 | **0.574** | 0.572 | 0.559 | 0.537 (384) |
+| MPNet | 0.520 | 0.546 | **0.562** | 0.553 | 0.542 (768) |
+
+Cells are mean held-out macro F1 across the five repetitions. The best tested embedding setting, MiniLM-L12 at 32 dimensions, reached **0.574** (95% paper-bootstrap interval 0.547–0.601; accuracy 0.579). For comparison, TF-IDF scored 0.587 and word count alone 0.308 on the same folds. Reducing dimension improved the point estimate for all three encoders, but the sizes were inspected on these data, so the highest cell is an exploratory selection rather than a separately validated optimum. PCA changes the representation as well as its size; the native points should not be interpreted as a pure dimension effect. The plotted comparison is in [model_size_comparison.ipynb](model_size_comparison.ipynb); reproduce all numbers with `python src/cross_validate.py --model-sizes`.
+
 ## Length diagnostics
 
 The plots below are from [test_length.ipynb](test_length.ipynb). They compare token lengths and retention thresholds for the selected `meso` text, with `macro` and `micro` as references. They are **length diagnostics**, not classifier scores. On all 500 `meso` examples, the median is 143 model tokens for the full paragraph. Axis labels and titles are in English.
@@ -55,7 +67,7 @@ The plots below are from [test_length.ipynb](test_length.ipynb). They compare to
 
 The full predictions and confidence-ranked correct and failed examples are in `results/<condition>/`. The highest confusion is between `meso` and `micro`, consistent with opening paragraphs containing concrete technical content. Some `macro` spans also contain detailed procedures despite appearing in an abstract or introduction. These mismatches show why structural source alone is an imperfect proxy for semantic abstraction.
 
-The results show that frozen MiniLM embeddings contain a linearly decodable signal for these structural labels, but TF-IDF performs better on the same NLP folds. The probe is not strong enough to treat as a reliable SLoD labeler. I would use its probabilities only as an auxiliary retrieval feature, alongside relevance. A stronger test would use a paper-disjoint, human-rated abstraction set and controls for source type and topic vocabulary.
+The results show that frozen sentence embeddings contain a linearly decodable signal for these structural labels. MiniLM-L12 with 32-dimensional train-fold PCA was the strongest tested embedding setting (macro F1 0.574), while TF-IDF reached 0.587 on the same NLP folds. The probe is not strong enough to treat as a reliable SLoD labeler. I would use its probabilities only as an auxiliary retrieval feature, alongside relevance. A stronger test would use a paper-disjoint, human-rated abstraction set and controls for source type and topic vocabulary.
 
 ## References
 

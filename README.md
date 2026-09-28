@@ -40,6 +40,8 @@ Each command writes `metrics.json`, a confusion matrix, predictions and qualitat
 
 To reproduce the length, surface-count and TF-IDF baselines on the same NLP paper folds, run `python src/cross_validate.py --baselines`. It prints their metrics and paired paper-bootstrap differences from the saved embedding-probe predictions. The comparison is summarized in `TECHNICAL_REPORT.md`.
 
+To compare frozen encoders at several embedding sizes, run `python src/cross_validate.py --model-sizes`. It evaluates the cached MiniLM-L6 embeddings plus MiniLM-L12 and MPNet on the same 750 NLP spans and paper folds. Smaller vectors are obtained with PCA fitted separately on each training fold; the native vector uses no PCA. All encoders use a 256-model-token input limit and the same `C=1` probe. This command downloads the two additional models to the standard Hugging Face cache and prints results without adding embedding files to the repository. The chart and recorded results are in `model_size_comparison.ipynb`.
+
 ## Rebuilding the data
 
 The source is one validation shard of `allenai/peS2o`, which is derived from S2ORC. The download is about 493 MB.
