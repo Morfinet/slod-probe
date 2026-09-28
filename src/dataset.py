@@ -146,7 +146,7 @@ def label_paper(record, domain):
             for paragraph in paragraphs[:2]:
                 add(name, "macro", "conclusion", paragraph)
         else:
-            add(name, "meso", "section_lead", first_sentence(paragraphs[0]))
+            add(name, "meso", "section_lead", paragraphs[0])
             if DETAIL.search(name):
                 for paragraph in paragraphs[1:]:
                     add(name, "micro", "detail", paragraph)

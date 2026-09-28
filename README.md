@@ -3,7 +3,7 @@
 This repository checks whether a frozen text embedding contains enough information for a linear classifier to distinguish three levels of detail in scientific papers:
 
 - `macro`: titles, abstracts, introduction and conclusion paragraphs;
-- `meso`: the first sentence of a regular section;
+- `meso`: the full opening paragraph of a regular section;
 - `micro`: detailed paragraphs from methods, experiments and results.
 
 The labels are produced from document structure, so they are weak labels rather than human annotation.
@@ -49,8 +49,8 @@ python src/embed.py --condition both
 python src/probe.py --condition all
 ```
 
-`dataset.py` scans the shard, assigns a domain using title keywords, creates structural labels and samples 250 spans for every domain/class combination. The final data contain 1,500 spans from 590 papers, with 500 spans per label.
+`dataset.py` scans the shard, assigns a domain using title keywords, creates structural labels with full opening paragraphs for `meso`, and samples up to 250 spans for every domain/class combination. The **saved evaluation cohort** contains 1,497 spans from 589 papers: 500 macro, 497 meso and 500 micro. Three uncertain paragraph mappings were excluded when this cohort was assembled. A fresh raw-data rebuild may select a different 1,500-span cohort; the reported numbers are reproducible from the saved `data/spans/spans.jsonl` and embedding cache.
 
 I used `sentence-transformers/all-MiniLM-L6-v2`. Its parameters are frozen and only the cached 384-dimensional embeddings are passed to logistic regression. Train/test splitting is done by `paper_id`, not by individual span. Run `python src/cross_validate.py` to regenerate all reported results in one command.
 
-For the length control, every retained span is cut to exactly 24 model tokens and embedded again. I used 24 rather than 100-150 tokens because titles and many section-leading sentences are shorter than 100 tokens. A larger lower bound would remove most of these examples and would change the dataset at the same time as controlling length.
+For the length control, every retained span is cut to exactly 24 model tokens and embedded again. I used 24 rather than 100-150 tokens because titles and some section leads are shorter than 100 tokens. A larger lower bound would remove many examples and would change the dataset at the same time as controlling length. The main report includes the length-distribution plots exported from `test_length.ipynb`.

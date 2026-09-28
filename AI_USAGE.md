@@ -22,7 +22,7 @@ The response proposed a pipeline consisting of weak-label generation, frozen Min
 
 > My S2ORC input has titles, abstracts, headings, and paragraphs on separate lines. Suggest understandable rules for macro, meso, and micro labels while excluding references and appendices.
 
-The response suggested treating titles and abstracts as macro candidates, using the opening sentence of an ordinary section for meso examples, and drawing micro examples from later methods/results paragraphs. I adapted those rules, added minimum-length checks, and retained the metadata needed for later analysis. I manually inspected examples from each source type and rebuilt the dataset from the pinned shard; the rebuild produced the same 1,500 selected spans.
+The response suggested treating titles and abstracts as macro candidates, using the opening sentence of an ordinary section for meso examples, and drawing micro examples from later methods/results paragraphs. I adapted those rules, added minimum-length checks, and retained the metadata needed for later analysis. In the initial prototype, a rebuild produced the same 1,500 selected spans. The current experiment uses full opening paragraphs for `meso` and excludes three ambiguous matches.
 
 ## Parser expressions
 
@@ -42,7 +42,7 @@ I used the suggestions as a starting point for `DOMAIN_PATTERNS`, `INTRO`, `CONC
 
 > I need 500 spans per class across NLP and CV, but long papers generate many more candidates. What simple deterministic sampling scheme will keep a few papers from dominating?
 
-The proposed approach was to shuffle paper IDs with a fixed seed, cap the number of spans contributed by one paper, and sample round-robin across papers. I used seed 42 and a limit of four spans per paper and label. The resulting dataset contains 500 macro, 500 meso, and 500 micro spans from 590 papers. I also checked that every row contains the required metadata.
+The proposed approach was to shuffle paper IDs with a fixed seed, cap the number of spans contributed by one paper, and sample round-robin across papers. I used seed 42 and a limit of four spans per paper and label. The initial dataset contained 500 spans per class; the current saved cohort contains 500 macro, 497 meso, and 500 micro spans from 589 papers. I checked that every row contains the required metadata.
 
 ## Length control
 
@@ -52,7 +52,7 @@ The proposed approach was to shuffle paper IDs with a fixed seed, cap the number
 
 > The suggested 100–150-token range removes nearly all titles and many section-opening sentences. How can I control length without losing whole label categories?
 
-The response suggested choosing a token count supported by all classes, truncating retained spans to that exact length, and embedding them again. I used 24 model tokens and rebalanced the classes within each paper-grouped train/test fold. This is not a perfect control because truncation removes later context, so I state that limitation in the report. I verified that all 1,223 controlled records have `model_token_count = 24`; the current repeated evaluation has 90–126 balanced test examples per fold.
+The response suggested choosing a token count supported by all classes, truncating retained spans to that exact length, and embedding them again. I used 24 model tokens and rebalanced the classes within each paper-grouped train/test fold. This is not a perfect control because truncation removes later context, so I state that limitation in the report. I verified that all 1,376 current controlled records have `model_token_count = 24`.
 
 ## Follow-up experiment plan
 
